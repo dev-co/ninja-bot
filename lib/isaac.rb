@@ -73,17 +73,17 @@ module Isaac
         env[:nick], env[:userhost], env[:channel], env[:error]
       self.message = env[:message] || ""
 
-      if handler = find(event, message)
+      (find(event, message)|| []).each do |handler|
         regexp, block = *handler
         self.match = message.match(regexp).captures
-        invoke block
+        break if invoke(block) == false
       end
     end
 
   private
     def find(type, message)
       if events = @events[type]
-        events.detect {|regexp,_| message.match(regexp)}
+        events.select {|regexp,_| message.match(regexp)}
       end
     end
 
