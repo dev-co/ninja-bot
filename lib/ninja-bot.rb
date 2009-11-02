@@ -39,7 +39,7 @@ class NinjaBot < Isaac::Bot
       puts "*"*80
       Dir["./plugins/*.rb"].each do |file|
         puts "loading #{file}..."
-        require file
+        eval File.read(file)
       end
       puts "*"*80
     rescue StandardError => e
