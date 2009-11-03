@@ -114,9 +114,11 @@ on :channel, /^!opinion (.*)/ do
   results = Twitter::Search.new(match.first).fetch["results"]["results"] #rescue nil
   if results
     twit = results.choice
-    source = shorten_url("http://twitter.com/#{twit["from_user"]}")
-    text = twit["text"]
-    msg channel, "#{nick}: #{text} (via #{source})"
+    if twit
+      source = shorten_url("http://twitter.com/#{twit["from_user"]}")
+      text = twit["text"]
+      msg channel, "#{nick}: #{text} (via #{source})"
+    end
   end
 end
 
