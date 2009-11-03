@@ -76,7 +76,14 @@ module Isaac
       (find(event, message)|| []).each do |handler|
         regexp, block = *handler
         self.match = message.match(regexp).captures
-        break if invoke(block) == false
+        begin
+          break if invoke(block) == false
+        rescue StandardError => e
+          puts "-"*80
+          puts e.inspect
+          puts "-"*80
+          msg channel, "#{nick} I'm sorry, but something went wrong."
+        end
       end
     end
 
