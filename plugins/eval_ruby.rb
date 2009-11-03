@@ -4,7 +4,7 @@ on :channel, /^!eval_ruby (.*)/ do
   Thread.start {
     $SAFE = 4
     begin
-    result = Object.module_eval(code)
+    result = Object.module_eval(code).inspect
     rescue Exception
       result = "you are so smart..."
     end
