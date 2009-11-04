@@ -2,14 +2,14 @@
 
 $:.unshift File.expand_path(File.dirname(__FILE__)+"/../lib/")
 
+require 'yaml'
 require 'ninja-bot'
 
-config = {
-  :nick    => "NinjaBot",
-  :server  => "irc.freenode.net",
-  :port    => 6667,
-  :realname => 'Bot',
-  :verbose  => true,
-  :version  => 'NinjaBot v0.0.1'}
+raw_config = File.read("config/ninja-bot.yml") 
+APP_CONFIG = YAML.load(raw_config)
 
-NinjaBot.new(config, "#dev-co").start
+APP_CONFIG.each do |channel, options| 
+	NinjaBot.new(options , "#"+channel).start
+end
+
+
