@@ -76,7 +76,14 @@ module Isaac
       (find(event, message)|| []).each do |handler|
         regexp, block = *handler
         self.match = message.match(regexp).captures
-        break if invoke(block) == false
+        begin
+          break if invoke(block) == false
+        rescue StandardError => e
+          puts "-"*80
+          puts e.inspect
+          puts "-"*80
+          msg channel, "#{nick} I'm sorry, but something went wrong."
+        end
       end
     end
 
@@ -122,8 +129,13 @@ module Isaac
     end
 
     def parse(input)
-      puts "<< #{input}" if @bot.config.verbose
+      puts "<< #{input.chomp.inspect}" if @bot.config.verbose
+
       case input.chomp
+      when /(^:(\S+)!(\S+) )?PRIVMSG (\S+) :?(.*)/
+        env = { :nick => $2, :userhost => $3, :channel => $4, :message => $5 }
+        type = env[:channel].match(/^#/) ? :channel : :private
+        @bot.dispatch(type, env)
       when /(^:\S+ )?00([1-4])/
         @registration << $2.to_i
         if registered?
@@ -135,10 +147,6 @@ module Isaac
       when /^PING (\S+)/
         @queue.unlock
         message "PONG #{$1}"
-      when /(^:(\S+)!(\S+) )?PRIVMSG (\S+) :?(.*)/
-        env = { :nick => $2, :userhost => $3, :channel => $4, :message => $5 }
-        type = env[:channel].match(/^#/) ? :channel : :private
-        @bot.dispatch(type, env)
       when /(^:\S+ )?([4-5]\d\d) \S+ (\S+)/
         env = {:error => $2.to_i, :message => $2, :nick => $3, :channel => $3}
         @bot.dispatch(:error, env)

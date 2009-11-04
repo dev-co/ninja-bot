@@ -12,4 +12,4 @@ config = {
   :verbose  => true,
   :version  => 'NinjaBot v0.0.1'}
 
-NinjaBot.new(config, "#ninja-bot").start
+NinjaBot.new(config, "#dev-co").start

@@ -19,6 +19,11 @@ class NinjaBot < Isaac::Bot
     load_plugins
   end
 
+  protected
+  def shorten_url(url)
+    open("http://bit.ly/api?url=#{url}").read rescue nil
+  end
+
   private
   def core_events
     on :channel, /^!join\s+(.*)/ do
