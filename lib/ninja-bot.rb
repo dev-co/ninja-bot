@@ -3,6 +3,8 @@ require 'isaac'
 require 'nokogiri'
 require 'httparty'
 
+require 'core_ext'
+
 class NinjaBot < Isaac::Bot
   def initialize(config, channels)
     super()
