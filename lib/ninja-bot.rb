@@ -15,7 +15,7 @@ class NinjaBot < Isaac::Bot
     end
 
     on :connect do
-      join channels
+      join *channels
     end
     core_events
     load_plugins
@@ -54,4 +54,3 @@ class NinjaBot < Isaac::Bot
     end
   end
 end
-

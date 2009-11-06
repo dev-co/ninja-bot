@@ -8,8 +8,9 @@ require 'ninja-bot'
 raw_config = File.read("config/ninja-bot.yml") 
 APP_CONFIG = YAML.load(raw_config)
 
-APP_CONFIG.each do |channel, options| 
-	NinjaBot.new(options , "#"+channel).start
+APP_CONFIG.each do |server, options| 
+    options[:server] = server
+    channel = options[:channels]
+    options.delete(:channels)
+	NinjaBot.new(options ,channel).start
 end
-
-

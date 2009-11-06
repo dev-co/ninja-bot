@@ -1,6 +1,8 @@
-dev-co: 
+irc.freenode.net: 
   :nick: "NinjaBot"
-  :server: "irc.freenode.net"
+  :channels: 
+     - "#dev-co"
+     - "#shapado"
   :port: 6667
   :realname: "Bot"
   :verbose: true
