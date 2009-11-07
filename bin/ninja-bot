@@ -4,6 +4,11 @@ $:.unshift File.expand_path(File.dirname(__FILE__)+"/../lib/")
 
 require 'yaml'
 require 'ninja-bot'
+p File.file?( "config/ninja-bot.yml" )
+if ( false == File.file?( "config/ninja-bot.yml" ) )
+  p "<< Please config your bot first!, rename ninja-bot.dist.yml to ninja-bot.yml"
+  exit
+end
 
 raw_config = File.read("config/ninja-bot.yml") 
 APP_CONFIG = YAML.load(raw_config)

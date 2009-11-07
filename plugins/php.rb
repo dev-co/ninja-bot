@@ -11,7 +11,7 @@ on :channel, /^!php (.+)/ do
       href = "http://www.php.net" + href
     end
 
-    msg channel, "#{nick}: " + link.content + " - #{href}"
+    msg channel, "#{nick}: " + link.content.strip + " - #{href}"
   end
 end
 
@@ -25,12 +25,12 @@ on :channel, /^!php_func (.+)/ do
 
   ver = ""
   xhtml.css( ".refnamediv p.verinfo" ).each do | version |
-    ver = version.content	
+    ver = version.content.strip
   end
 
   desc = ""
   xhtml.css( ".refnamediv span.dc-title" ).each do | description |
-    desc = description.content	
+    desc = description.content.strip
   end
 
   syn = ""
@@ -41,5 +41,7 @@ on :channel, /^!php_func (.+)/ do
   if ver != "" && desc != "" && syn != ""
     msg channel, "#{ver} - #{desc}"
     msg channel, "#{syn}"
+  else
+    msg channel, "Not Found"
   end
 end
