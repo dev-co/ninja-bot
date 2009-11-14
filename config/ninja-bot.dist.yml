@@ -7,5 +7,3 @@ irc.freenode.net:
   :realname: "Bot"
   :verbose: true
   :version: "NinjaBot v0.0.1"
-  :identify:
-    :password: "secret"
