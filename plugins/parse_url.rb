@@ -9,7 +9,7 @@ on :channel, /((?:(?:ht|f)tp(?:s?)\:\/\/|~\/|\/)?(?:\w+:\w+@)?(?:(?:[-\w\d{1-3}]
     xhtml = Nokogiri::HTML( open( "#{match[0].strip}" ) )
     xhtml.xpath( "//title" ).each do | title |
       if ( title.content )
-        msg channel, title.content.strip
+        msg channel, title.content.gsub( /([\n\t])+{1,}/, " " ).strip
       end
     end
   rescue Exception => e
