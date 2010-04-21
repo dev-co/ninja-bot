@@ -1,3 +1,5 @@
+require 'cgi'
+
 module Twitter
   class Search
     include HTTParty
@@ -117,7 +119,7 @@ on :channel, /^!opinion (.*)/ do
     if twit
       source = shorten_url("http://twitter.com/#{twit["from_user"]}")
       text = twit["text"]
-      msg channel, "#{nick}: #{text} (via #{source})"
+      msg channel, "#{nick}: #{CGI.unescapeHTML(text)} (via #{source})"
     end
   end
 end
