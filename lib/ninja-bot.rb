@@ -1,3 +1,5 @@
+$KCODE = 'u'
+
 require 'rubygems'
 require 'isaac'
 require 'nokogiri'
