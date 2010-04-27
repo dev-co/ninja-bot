@@ -1,5 +1,5 @@
 
 on :channel, /^!fortune/ do
-  msg channel, "#{nick}: #{`fortune`}"
+  msg channel, "#{nick}: #{`fortune`}".gsub(/[\n|\r|\t{2,}]/,' ')
 end
 
