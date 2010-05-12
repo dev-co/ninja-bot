@@ -4,9 +4,9 @@ require "cgi"
 #
 # Search on the online documentation
 #
-on :channel, /^!php (.+)/ do
+plugin "php :text" do |m|
   begin
-    query = CGI.escape( match[0].strip )
+    query = CGI.escape( m.args[:text].strip )
     xhtml = Nokogiri::HTML( open( "http://www.php.net/results.php?q=#{query}&p=manual&l=en" ) )
     xhtml.css( "#search-results li:first p.result a" ).each do | link |
       href = link[:href]
@@ -14,7 +14,7 @@ on :channel, /^!php (.+)/ do
         href = "http://www.php.net" + href
       end
 
-      msg channel, "#{nick}: " + link.content.strip + " - #{href}"
+      m.reply "#{m.nick}: " + link.content.strip + " - #{href}"
     end
   rescue Exception => e
     p e
@@ -24,9 +24,9 @@ end
 #
 # Display php function information
 #
-on :channel, /^!php_func (.+)/ do
+plugin "php_func :text" do |m|
   begin
-    func = match[0].gsub( /[_-]+/, "-" )
+    func = m.args[:text].gsub( /[_-]+/, "-" )
     xhtml = Nokogiri::HTML( open( "http://www.php.net/manual/en/function.#{func.strip}.php" ) )
 
     ver = ""
@@ -45,10 +45,10 @@ on :channel, /^!php_func (.+)/ do
     end
 
     if ver != "" && desc != "" && syn != ""
-      msg channel, "#{ver} - #{desc}"
-      msg channel, "#{syn}"
+      m.reply "#{ver} - #{desc}"
+      m.reply "#{syn}"
     else
-      msg channel, "Not Found"
+      m.reply "Not Found"
     end
   rescue Exception => e
     p e

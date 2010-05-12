@@ -15,7 +15,5 @@ APP_CONFIG = YAML.load(raw_config)
 
 APP_CONFIG.each do |server, options| 
     options[:server] = server
-    channel = options[:channels]
-    options.delete(:channels)
-	NinjaBot.new(options ,channel).start
+    NinjaBot.new(options).run
 end

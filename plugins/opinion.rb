@@ -112,14 +112,14 @@ module Twitter
   end
 end
 
-on :channel, /^!opinion (.*)/ do
-  results = Twitter::Search.new(match.first).fetch["results"]["results"] #rescue nil
+plugin "opinion :text" do |m|
+  results = Twitter::Search.new(m.args[:text]).fetch["results"]["results"] #rescue nil
   if results
     twit = results.choice
     if twit
       source = shorten_url("http://twitter.com/#{twit["from_user"]}")
       text = twit["text"]
-      msg channel, "#{nick}: #{CGI.unescapeHTML(text)} (via #{source})"
+      m.reply "#{m.nick}: #{CGI.unescapeHTML(text)} (via #{source})"
     end
   end
 end

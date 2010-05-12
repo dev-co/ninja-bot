@@ -1,24 +1,16 @@
 $KCODE = 'u'
 
 require 'rubygems'
-require 'isaac'
+require 'cinch'
 require 'nokogiri'
 require 'httparty'
 
 require 'core_ext'
 
-class NinjaBot < Isaac::Bot
-  def initialize(config, channels)
-    super()
-    configure do |c|
-      config.each do |k,v|
-        c.send("#{k}=", v)
-      end
-    end
+class NinjaBot < Cinch::Base
+  def initialize(config)
+    super(config)
 
-    on :connect do
-      join *channels
-    end
     core_events
     load_plugins
   end
@@ -30,16 +22,16 @@ class NinjaBot < Isaac::Bot
 
   private
   def core_events
-    on :channel, /^!join\s+(.*)/ do
-      if nick == "kuadrosx"
-        join match.first
-      else
-        msg channel, "#{nick} you aren't my father"
-      end
-    end
+#    on :channel, /^!join\s+(.*)/ do
+#      if nick == "kuadrosx"
+#        join match.first
+#      else
+#        msg channel, "#{nick} you aren't my father"
+#      end
+#    end
 
-    on :channel, /^!say\s+(.*)/ do
-      msg channel, match.first
+    plugin "say :text" do |m|
+      m.reply m.args[:text]
     end
   end
 

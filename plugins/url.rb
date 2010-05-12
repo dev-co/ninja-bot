@@ -1,8 +1,8 @@
 
-on :channel, /^!url (.*)/ do
-  short = shorten_url(match.first)
+plugin "url :text" do |m|
+  short = shorten_url(m.args[:text])
   if !short.blank?
-    msg channel, "#{nick}: #{short}"
+    m.reply "#{m.nick}: #{short}"
   end
 end
 

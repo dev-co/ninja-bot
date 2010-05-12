@@ -1,5 +1,5 @@
 
-on :channel, /^!google (.*)/ do
-  msg channel, shorten_url("http://lmgtfy.com/?q=#{match.first.gsub(/\s/, "+")}")
+plugin "google :text" do |m|
+  m.reply shorten_url("http://lmgtfy.com/?q=#{m.args[:text].gsub(/\s/, "+")}")
 end
 

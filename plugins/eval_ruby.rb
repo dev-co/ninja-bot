@@ -1,7 +1,7 @@
 require 'timeout'
 
-on :channel, /^!eval_ruby (.*)/ do
-  code = match.first
+plugin "eval_ruby :text" do |m|
+  code = m.args[:text]
   result = ""
   begin
     Timeout.timeout(2) do
@@ -20,6 +20,6 @@ on :channel, /^!eval_ruby (.*)/ do
     result = "you suck as programmer boy"
   end
 
-  msg channel, "#{nick}: #{result}"
+  m.reply "#{m.nick}: #{result}"
 end
 
