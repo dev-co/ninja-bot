@@ -3,18 +3,24 @@ require "open-uri"
 def parse_url(m)
   begin
     xhtml = Nokogiri::HTML( open( "#{m.args[:text].strip}" ) )
-    if m.args[:text].scan(/https?:\/\/([a-z]*\.)?twitter.com\/(\w+)\/status(es)?\/(\d+)/).empty?
-        xhtml.xpath( "//head/title" ).each do | title |
-          if ( title.content )
-            m.reply title.content.gsub( /([\n\t])+{1,}/, " " ).strip
-          end
-        end
+    if /https?:\/\/([a-z]*\.)?twitter.com\/(\w+)\/status(es)?\/(\d+)/ =~ m.args[:text]
+      xhtml.xpath( '//span[@class="entry-content"]' ).each do | tweet |
+	if ( tweet.content )
+	  m.reply tweet.content.gsub( /([\n\t])+{1,}/, " " ).strip
+	end
+      end
+    elsif /https?:\/\/identi.ca\/notice\/(\d+)/ =~ m.args[:text]
+      xhtml.xpath( '//p[@class="entry-content"]' ).each do | tweet |
+	if ( tweet.content )
+	  m.reply tweet.content.gsub( /([\n\t])+{1,}/, " " ).strip;
+	end
+      end
     else
-        xhtml.xpath( '//span[@class="entry-content"]' ).each do | tweet |
-          if ( tweet.content )
-            m.reply tweet.content.gsub( /([\n\t])+{1,}/, " " ).strip
-          end
-        end
+      xhtml.xpath( "//head/title" ).each do | title |
+	if ( title.content )
+	  m.reply title.content.gsub( /([\n\t])+{1,}/, " " ).strip
+	end
+      end
     end 
   rescue Exception => e
     p e
