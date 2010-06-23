@@ -3,7 +3,7 @@ require "open-uri"
 def parse_url(m)
   begin
     xhtml = Nokogiri::HTML( open( "#{m.args[:text].strip}" ) )
-    if m.args[:text].scan(/https?:\/\/twitter.com\/(\w+)\/status(es)?\/(\d+)/).empty?
+    if m.args[:text].scan(/https?:\/\/([a-z]*\.)?twitter.com\/(\w+)\/status(es)?\/(\d+)/).empty?
         xhtml.xpath( "//head/title" ).each do | title |
           if ( title.content )
             m.reply title.content.gsub( /([\n\t])+{1,}/, " " ).strip
