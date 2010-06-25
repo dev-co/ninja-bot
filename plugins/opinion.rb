@@ -1,4 +1,5 @@
 require 'cgi'
+require 'ago'
 
 module Twitter
   class Search
@@ -119,7 +120,8 @@ plugin "opinion :text" do |m|
     if twit
       source = shorten_url("http://twitter.com/#{twit["from_user"]}")
       text = twit["text"]
-      m.reply "#{m.nick}: #{CGI.unescapeHTML(text)} (via #{source})"
+      t =Time.parse(twit["created_at"])
+      m.reply "#{m.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago})"
     end
   end
 end
