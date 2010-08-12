@@ -2,12 +2,11 @@ require 'open-uri'
 plugin "pic" do |m|
   Thread.start(m) do |m|
     pic = "i don't want to work today!"
-    open("http://randomfunnypicture.com").each do |line|
-      if line =~ %r{src="(http://www\.randomfunnypicture.com/pictures/(\S+))"\s}
-        puts "FOUND: #{$1}"
-        pic = shorten_url($1)
-        break
-      end
+    xhtml = Nokogiri::HTML( open("http://randomfunnypicture.com") )
+    img = xhtml.css('center a[@href="http://randomfunnypicture.com/?random"] img').first
+
+    if img
+      pic = "#{img["alt"].sub(/^funny pictures /, "")} -- #{shorten_url(img["src"])}"
     end
 
 	  m.reply "#{m.nick}: #{pic}"
