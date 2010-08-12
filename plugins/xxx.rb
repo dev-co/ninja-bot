@@ -9,7 +9,7 @@ module Xxx
     def random
       url, hrefp, enter = self.config
       enter ? agent.get(uri(url), &enter) : agent.get(uri(url))
-      link = agent.page.links_with(:href => hrefp).first
+      link = agent.page.links_with(:href => hrefp).choice
       title = link.text.to_s.strip
       href = link.href
 

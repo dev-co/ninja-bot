@@ -8,7 +8,7 @@ plugin "pic" do |m|
         :demot => ['http://verydemotivational.com/?random', '.snap_preview img'],
         :comixed => ['http://comixed.com/?random', '.snap_preview img']
       }
-      source = sources[sources.keys.at(rand(sources.keys.size))]
+      source = sources[sources.keys.choice]
 
       pic = ""
 
