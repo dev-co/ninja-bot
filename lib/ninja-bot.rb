@@ -24,7 +24,7 @@ class NinjaBot < Cinch::Base
   def safe_run(bot, *args, &block)
     Thread.start(bot, args) do |bot, args|
       begin
-        Timeout.timeout(10) do
+        Timeout.timeout(15) do
           block.call(bot, *args)
         end
       rescue Exception => e
