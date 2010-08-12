@@ -1,3 +1,20 @@
-*~
+## MAC OS
+.DS_Store
 
-/config/ninja-bot.yml
+## TEXTMATE
+*.tmproj
+tmtags
+
+## EMACS
+*~
+\#*
+.\#*
+
+## VIM
+*.swp
+
+## PROJECT::GENERAL
+
+## PROJECT::SPECIFIC
+nbproject
+config/ninja-bot.yml
