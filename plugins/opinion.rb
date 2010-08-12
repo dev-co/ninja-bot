@@ -115,7 +115,19 @@ end
 
 plugin "opinion :text" do |m|
   safe_run(m) do |m|
-    results = Twitter::Search.new(m.args[:text]).fetch["results"]["results"] #rescue nil
+    text = m.args[:text]
+    lang = nil
+    if text =~ /^:(\w\w) /
+      lang = $1
+      text.sub!(":#{lang} ", "")
+    end
+
+    search = Twitter::Search.new(text)
+    if lang
+      search.lang(lang)
+    end
+
+    results = search.fetch["results"]["results"]
     if results
       twit = results.choice
       if twit
