@@ -1,15 +1,29 @@
 require 'open-uri'
 plugin "pic" do |m|
   safe_run(m) do |m|
-    pic = "i don't want to work today!"
-    xhtml = Nokogiri::HTML( open("http://randomfunnypicture.com") )
-    img = xhtml.css('center a[@href="http://randomfunnypicture.com/?random"] img').first
+    5.times do
+      sources = {
+        :failblog => ['http://randomfunnypicture.com', 'center a[@href="http://randomfunnypicture.com/?random"] img'],
+        :rfp => ['http://failblog.org/?random', '.snap_preview img'],
+        :demot => ['http://verydemotivational.com/?random', '.snap_preview img'],
+        :comixed => ['http://comixed.com/?random', '.snap_preview img']
+      }
+      source = sources[sources.keys.at(rand(sources.keys.size))]
 
-    if img
+      pic = ""
+
+      xhtml = Nokogiri::HTML(open(source[0]))
+      img = xhtml.css(source[1]).first
+
+      if !img
+        puts "#{source} failed!"
+        next
+      end
+
       pic = "#{img["alt"].sub(/^funny pictures /, "")} -- #{shorten_url(img["src"])}"
-    end
 
-    m.reply "#{m.nick}: #{pic}"
+      m.reply "#{m.nick}: #{pic}"
+      break
+    end
   end
 end
-
