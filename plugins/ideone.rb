@@ -1,5 +1,4 @@
 require "ideone"
-require "tmpdir"
 
 plugin "ideone :lang :code" do | c |
   begin
