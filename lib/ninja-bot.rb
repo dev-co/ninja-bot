@@ -46,15 +46,15 @@ class NinjaBot < Cinch::Base
   end
 
   def load_plugins
-    begin
-      puts "*"*80
-      Dir["./plugins/*.rb"].each do |file|
-        puts "loading #{file}..."
+    puts "*"*80
+    Dir["./plugins/*.rb"].each do |file|
+      puts "loading #{file}..."
+      begin
         eval File.read(file)
+      rescue Exception => e
+        puts "Cannot load: #{e.inspect}"
       end
-      puts "*"*80
-    rescue Exception => e
-      puts e.inspect
     end
+    puts "*"*80
   end
 end
