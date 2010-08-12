@@ -20,6 +20,16 @@ class NinjaBot < Cinch::Base
     open("http://bit.ly/api?url=#{url}").read rescue nil
   end
 
+  def safe_run(bot, *args, &block)
+    Thread.start(bot, args) do |bot, args|
+      begin
+        block.call(bot, *args)
+      rescue Exception => e
+        bot.reply "#{e.message} -- #{e.backtrace[0,5].join(", ")}"
+      end
+    end
+  end
+
   private
   def core_events
 #    on :channel, /^!join\s+(.*)/ do
