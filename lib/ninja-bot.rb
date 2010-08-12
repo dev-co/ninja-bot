@@ -4,6 +4,7 @@ require 'rubygems'
 require 'cinch'
 require 'nokogiri'
 require 'httparty'
+require 'timeout'
 
 require 'core_ext'
 
@@ -23,7 +24,9 @@ class NinjaBot < Cinch::Base
   def safe_run(bot, *args, &block)
     Thread.start(bot, args) do |bot, args|
       begin
-        block.call(bot, *args)
+        Timeout.timeout(5) do
+          block.call(bot, *args)
+        end
       rescue Exception => e
         bot.reply "#{e.message} -- #{e.backtrace[0,5].join(", ")}"
       end
