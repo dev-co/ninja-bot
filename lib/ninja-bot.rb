@@ -43,7 +43,7 @@ class NinjaBot < Cinch::Base
         eval File.read(file)
       end
       puts "*"*80
-    rescue StandardError => e
+    rescue Exception => e
       puts e.inspect
     end
   end
