@@ -12,6 +12,7 @@ class NinjaBot < Cinch::Base
   def initialize(config)
     super(config)
 
+    track_names
     core_events
     load_plugins
   end
