@@ -1,4 +1,4 @@
-plugin "eval_ruby :text" do |m|
+plugin "ruby :text" do |m|
   safe_run(m) do |m|
     code = m.args[:text]
     result = ""
