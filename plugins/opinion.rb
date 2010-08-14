@@ -114,8 +114,8 @@ module Twitter
 end
 
 plugin "opinion :text" do |m|
-  safe_run(m) do |m|
-    text = m.args[:text]
+  safe_run(m, m.args) do |m, args|
+    text = args[:text]
     lang = nil
     if text =~ /^:(\w\w) /
       lang = $1
