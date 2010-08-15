@@ -56,19 +56,19 @@ on :quit do |m|
 end
 
 plugin ":channel_message", :prefix => "" do |m|
-  safe_run(m, m.args) do |m, args|
-    UserDb.instance.parse(m.nick, m.chan, args[:channel_message])
+  safe_run(m, m.args, m.nick, m.chan) do |m, args, nick, chan|
+    UserDb.instance.parse(nick, chan, args[:channel_message])
   end
 end
 
 plugin "seen :target" do |m|
-  safe_run(m, m.args) do |m, args|
+  safe_run(m, m.args, m.nick) do |m, args, nick|
     if (channel_names[m.channel] || []).include?(args[:target])
-      m.reply "#{m.nick}: you need new glasses"
+      m.reply "#{nick}: you need new glasses"
     elsif seen = UserDb.instance.last_seen(args[:target])
-      m.reply "#{m.nick}: Last time I saw #{args[:target]} was #{seen.first}. it said: #{seen.last}"
+      m.reply "#{nick}: Last time I saw #{args[:target]} was #{seen.first}. it said: #{seen.last}"
     elsif m.nick == args[:target]
-      m.reply "#{m.nick}: you need a new brain"
+      m.reply "#{nick}: you need a new brain"
     else
       m.reply "I've never seen that guy #{args[:target]} over here."
     end

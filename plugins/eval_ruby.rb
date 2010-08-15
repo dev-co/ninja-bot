@@ -1,6 +1,6 @@
-plugin "eval_ruby :text" do |m|
-  safe_run(m) do |m|
-    code = m.args[:text]
+plugin "ruby :text" do |m|
+  safe_run(m, m.args) do |m, args|
+    code = args[:text]
     result = ""
 
     Timeout.timeout(2) do

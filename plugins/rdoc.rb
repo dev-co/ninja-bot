@@ -1,8 +1,8 @@
 require 'mechanize'
 
 plugin "rdoc :text" do |m|
-  safe_run(m) do |m|
-    xhtml = Nokogiri::HTML(open("http://rdoc.info/projects/search?q=#{URI.escape(m.args[:text])}"))
+  safe_run(m, m.args) do |m, args|
+    xhtml = Nokogiri::HTML(open("http://rdoc.info/projects/search?q=#{URI.escape(args[:text])}"))
     links = xhtml.css(".projects .project a")[0,10]
     result = links.map do |link|
       "http://rdoc.info#{link[:href]}"

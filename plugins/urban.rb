@@ -19,8 +19,8 @@ module UrbanDictionary
 end
 
 plugin "urban :text" do |m|
-  safe_run(m) do |m|
-    xhtml = Nokogiri::HTML( UrbanDictionary::Search.new( m.args[:text] ).fetch )
+  safe_run(m, m.args) do |m, args|
+    xhtml = Nokogiri::HTML( UrbanDictionary::Search.new( args[:text] ).fetch )
     xhtml.xpath( '//table[@id="entries"]/tr[2]//div[@class="definition"]' ).each do | definition |
       if ( definition.content )
         m.reply "#{m.nick}: #{definition.content.gsub( /([\n\t])+{1,}/, " " ).strip}"
