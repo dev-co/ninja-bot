@@ -3,7 +3,7 @@ require 'json'
 
 class IsoHunt
   def execute(bot, query)
-    items = JSON.parse(open("http://isohunt.com/js/json.php?ihq=#{CGI.escape(query)}&rows=20&sort=seeds").read)
+    items = JSON.parse(open("http://isohunt.com/js/json.php?ihq=#{CGI.escape(query.capitalize)}&rows=20&sort=seeds").read)
 
     count = 0
     pattern = query.split(" ").map { |e| /#{Regexp.escape(e)}/i }
