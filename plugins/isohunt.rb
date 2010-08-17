@@ -11,7 +11,12 @@ class IsoHunt
       title = item["title"].gsub(/<\/?[^>]*>/, "")
       next unless pattern.find {|p| title.match(p).nil? }.nil?
 
-      bot.reply "#{bot.nick}: #{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
+
+      if count == 0
+        bot.reply "#{bot.nick}: #{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
+      else
+        bot.irc.privmsg bot.nick, "#{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
+      end
 
       break if (count+=1) == 4
     end
@@ -30,13 +35,18 @@ class SubDivX
     pattern = query.split(" ").map { |e| Regexp.escape(e) }.join("|")
 
     doc = Nokogiri::HTML(open("http://subdivx.com/index.php?buscar=#{CGI.escape(query)}&accion=5&masdesc=&subtitulos=1&realiza_b=1"))
+
     doc.css("#buscador_detalle").each do |detalle|
       description = detalle.css("#buscador_detalle_sub").text
 
       next if description !~ /#{pattern}/i
 
       link = detalle.css('a[@target="new"]').first["href"]
-      bot.reply "#{bot.nick}: #{description} #{link}"
+      if count == 0
+        bot.reply "#{bot.nick}: #{description} #{link}"
+      else
+        bot.irc.privmsg(bot.nick, "#{description} #{link}")
+      end
 
       break if (count+=1) == 4
     end
