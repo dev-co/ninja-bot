@@ -1,6 +1,7 @@
 $KCODE = 'u'
 
 require 'rubygems'
+
 require 'cinch'
 require 'nokogiri'
 require 'httparty'
@@ -25,9 +26,7 @@ class NinjaBot < Cinch::Base
   def safe_run(bot, *args, &block)
     Thread.start(bot, args) do |bot, args|
       begin
-        Timeout.timeout(15) do
-          block.call(bot, *args)
-        end
+        block.call(bot, *args)
       rescue Exception => e
         bot.reply "#{e.message} -- #{e.backtrace[0,5].join(", ")}"
       end
