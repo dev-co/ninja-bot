@@ -1,4 +1,4 @@
-gem 'rae', '0.1.0'
+gem 'rae', '1.5.0'
 require 'rae'
 
 plugin "rae :text" do |m|
