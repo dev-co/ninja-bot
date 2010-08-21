@@ -62,18 +62,17 @@ plugin ":channel_message", :prefix => "" do |m|
 end
 
 plugin "seen :target" do |m|
-    safe_run(m, m.args, m.nick) do |m, args, nick|
-      target = args[:target].downcase
-      nick.downcase!
-      if nick == target
-        m.reply "#{nick}: you need a new brain"
-      if (channel_names[m.channel] || []).include?(target)
-        m.reply "#{nick}: you need new glasses"
-      elsif seen = UserDb.instance.last_seen(target)
-        m.reply "#{nick}: Last time I saw #{args[:target]} was #{seen.first}. it said: #{seen.last}"
-      else
-        m.reply "I've never seen that guy #{args[:target]} over here."
-      end
+  safe_run(m, m.args, m.nick) do |m, args, nick|
+    target = args[:target].downcase
+    nick.downcase!
+    if nick == target
+      m.reply "#{nick}: you need a new brain"
+    elsif (channel_names[m.channel] || []).include?(target)
+      m.reply "#{nick}: you need new glasses"
+    elsif seen = UserDb.instance.last_seen(target)
+      m.reply "#{nick}: Last time I saw #{args[:target]} was #{seen.first}. it said: #{seen.last}"
+    else
+      m.reply "I've never seen that guy #{args[:target]} over here."
     end
   end
 end
