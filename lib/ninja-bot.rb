@@ -2,6 +2,7 @@ $KCODE = 'u'
 
 require 'rubygems'
 
+gem 'cinch', '0.3.5'
 require 'cinch'
 require 'nokogiri'
 require 'httparty'
