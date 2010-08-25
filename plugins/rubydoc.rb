@@ -5,7 +5,7 @@ class RubyDoc
     count = 0
 
     base_url = "http://ruby-doc.org/ruby-1.9"
-    klass, method = query.split(/\#|\s/, 2)
+    klass, method = query.split(/\#|\s|\./, 2)
 
     agent = Mechanize.new
     page = agent.get("#{base_url}/fr_class_index.html")
