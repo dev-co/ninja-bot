@@ -18,19 +18,6 @@ class NinjaBot < Cinch::Bot
    load_plugins
   end
 
-  protected
-  def shorten_url(url)
-    open("http://bit.ly/api?url=#{url}").read rescue nil
-  end
-
-  def safe_run(bot, &block)
-    begin
-      block.call(bot, *args)
-    rescue Exception => e
-      bot.reply "#{e.message} -- #{e.backtrace[0,5].join(", ")}"
-    end
-  end
-
   private
   def load_plugins
     puts "*"*80

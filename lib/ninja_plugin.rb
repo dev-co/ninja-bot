@@ -6,4 +6,8 @@ module NinjaPlugin
   def usage
     raise NotImplementedError
   end
+
+  def shorten_url(url)
+    open("http://bit.ly/api?url=#{url}").read rescue nil
+  end
 end
