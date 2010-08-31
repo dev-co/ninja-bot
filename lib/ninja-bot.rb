@@ -14,7 +14,7 @@ class NinjaBot < Cinch::Bot
       self.config.send("#{k}=", v)
     end
 
-#    load_plugins
+   load_plugins
   end
 
   protected
