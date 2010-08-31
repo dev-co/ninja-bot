@@ -3,7 +3,7 @@
 $:.unshift File.expand_path(File.dirname(__FILE__)+"/../lib/")
 
 require 'yaml'
-require 'ninja-bot'
+require 'ninja_bot'
 p File.file?( "config/ninja-bot.yml" )
 if ( false == File.file?( "config/ninja-bot.yml" ) )
   p "<< Please config your bot first!, rename ninja-bot.dist.yml to ninja-bot.yml"
