@@ -8,6 +8,6 @@ module NinjaPlugin
   end
 
   def shorten_url(url)
-    open("http://bit.ly/api?url=#{url}").read rescue nil
+    open("http://bit.ly/api?url=#{url}").read rescue url
   end
 end
