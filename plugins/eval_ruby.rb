@@ -1,6 +1,13 @@
-plugin "ruby :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    code = args[:text]
+class EvalRubyPlugin
+  include NinjaPlugin
+
+  match /ruby (.+)/
+
+  def usage
+    "!fortune -- display a random adage"
+  end
+
+  def execute(m, code)
     result = ""
 
     Timeout.timeout(2) do
@@ -16,7 +23,8 @@ plugin "ruby :text" do |m|
       }.join
     end
 
-    m.reply "#{m.nick}: #{result}"
+    m.reply "#{m.user.nick}: #{result}"
   end
 end
 
+register_plugin EvalRubyPlugin
