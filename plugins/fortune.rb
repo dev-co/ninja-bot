@@ -1,6 +1,6 @@
 
 class FortunePlugin
-  include Cinch::Plugin
+  include NinjaPlugin
 
   match /fortune/
 

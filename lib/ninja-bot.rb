@@ -4,6 +4,7 @@ require 'nokogiri'
 require 'httparty'
 require 'timeout'
 
+require 'ninja_plugin'
 require 'core_ext'
 
 class NinjaBot < Cinch::Bot
