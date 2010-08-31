@@ -15,5 +15,5 @@ APP_CONFIG = YAML.load(raw_config)
 
 APP_CONFIG.each do |server, options| 
     options[:server] = server
-    NinjaBot.new(options).run
+    NinjaBot.new(options).start
 end

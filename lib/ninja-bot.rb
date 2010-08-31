@@ -1,8 +1,4 @@
-$KCODE = 'u'
-
-require 'rubygems'
-
-gem 'cinch', '0.3.5'
+gem 'cinch', '1.0.1'
 require 'cinch'
 require 'nokogiri'
 require 'httparty'
@@ -10,13 +6,15 @@ require 'timeout'
 
 require 'core_ext'
 
-class NinjaBot < Cinch::Base
+class NinjaBot < Cinch::Bot
   def initialize(config)
-    super(config)
+    super()
 
-    track_names
-    core_events
-    load_plugins
+    config.each do |k, v|
+      self.config.send("#{k}=", v)
+    end
+
+#    load_plugins
   end
 
   protected
@@ -24,31 +22,15 @@ class NinjaBot < Cinch::Base
     open("http://bit.ly/api?url=#{url}").read rescue nil
   end
 
-  def safe_run(bot, *args, &block)
-    Thread.start(bot, args) do |bot, args|
-      begin
-        block.call(bot, *args)
-      rescue Exception => e
-        bot.reply "#{e.message} -- #{e.backtrace[0,5].join(", ")}"
-      end
+  def safe_run(bot, &block)
+    begin
+      block.call(bot, *args)
+    rescue Exception => e
+      bot.reply "#{e.message} -- #{e.backtrace[0,5].join(", ")}"
     end
   end
 
   private
-  def core_events
-#    on :channel, /^!join\s+(.*)/ do
-#      if nick == "kuadrosx"
-#        join match.first
-#      else
-#        msg channel, "#{nick} you aren't my father"
-#      end
-#    end
-
-    plugin "say :text" do |m|
-      m.reply m.args[:text]
-    end
-  end
-
   def load_plugins
     puts "*"*80
     Dir["./plugins/*.rb"].each do |file|
