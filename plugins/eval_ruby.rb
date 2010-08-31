@@ -4,7 +4,7 @@ class EvalRubyPlugin
   match /ruby (.+)/
 
   def usage
-    "!fortune -- display a random adage"
+    "!ruby <code> -- evals ruby code"
   end
 
   def execute(m, code)
