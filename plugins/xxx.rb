@@ -57,7 +57,7 @@ end
 class XxxxPlugin
   include NinjaPlugin
 
-  match /rae/
+  match /xxx/
 
   def usage
     "!xxx -- random xxx movie"

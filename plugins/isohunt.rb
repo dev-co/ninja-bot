@@ -1,7 +1,14 @@
-require 'open-uri'
 require 'json'
 
-class IsoHunt
+class IsoHuntPlugin
+  include NinjaPlugin
+
+  match /isohunt (.+)/
+
+  def usage
+    "!isohunt -- search on isohunt.com"
+  end
+
   def execute(bot, query)
     items = JSON.parse(open("http://isohunt.com/js/json.php?ihq=#{CGI.escape(query.capitalize)}&rows=20&sort=seeds").read)
 
@@ -11,11 +18,10 @@ class IsoHunt
       title = item["title"].gsub(/<\/?[^>]*>/, "")
       next unless pattern.find {|p| title.match(p).nil? }.nil?
 
-
       if count == 0
-        bot.reply "#{bot.nick}: #{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
+        bot.reply "#{bot.user.nick}: #{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
       else
-        bot.irc.privmsg bot.nick, "#{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
+        bot.user.send "#{title} #{item["enclosure_url"]} #{item["size"]} s:#{item["Seeds"]} l:#{item["leechers"]} v:#{item["votes"]}"
       end
 
       break if (count+=1) == 4
@@ -23,13 +29,15 @@ class IsoHunt
   end
 end
 
-plugin "isohunt :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    IsoHunt.new.execute(m, args[:text])
-  end
-end
+class SubDivXPlugin
+  include NinjaPlugin
 
-class SubDivX
+  match /subs (.+)/
+
+  def usage
+    "!subs -- search subtitles in spanish"
+  end
+
   def execute(bot, query)
     count = 0
     pattern = query.split(" ").map { |e| Regexp.escape(e) }.join("|")
@@ -43,9 +51,9 @@ class SubDivX
 
       link = detalle.css('a[@target="new"]').first["href"]
       if count == 0
-        bot.reply "#{bot.nick}: #{description} #{link}"
+        bot.reply "#{bot.user.nick}: #{description} #{link}"
       else
-        bot.irc.privmsg(bot.nick, "#{description} #{link}")
+        bot.user.send "#{description} #{link}"
       end
 
       break if (count+=1) == 4
@@ -53,8 +61,5 @@ class SubDivX
   end
 end
 
-plugin "subs :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    SubDivX.new.execute(m, args[:text])
-  end
-end
+register_plugin IsoHuntPlugin
+register_plugin SubDivXPlugin

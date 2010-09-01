@@ -1,6 +1,13 @@
-require 'open-uri'
-plugin "pic" do |m|
-  safe_run(m) do |m|
+class FunnyPicPlugin
+  include NinjaPlugin
+
+  match /pic/
+
+  def usage
+    "!pic -- random picture"
+  end
+
+  def execute(m)
     5.times do
       sources = {
         :failblog => ['http://randomfunnypicture.com', 'center a[@href="http://randomfunnypicture.com/?random"] img'],
@@ -22,8 +29,10 @@ plugin "pic" do |m|
 
       pic = "#{img["alt"].sub(/^funny pictures /, "")} -- #{shorten_url(img["src"])}"
 
-      m.reply "#{m.nick}: #{pic}"
+      m.reply "#{m.user.nick}: #{pic}"
       break
     end
   end
 end
+
+register_plugin FunnyPicPlugin
