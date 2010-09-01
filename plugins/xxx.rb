@@ -1,5 +1,3 @@
-require 'mechanize'
-
 module Xxx
   class Base
     def agent
@@ -56,11 +54,21 @@ module Xxx
   end
 end
 
-plugin "xxx" do |m|
-  safe_run(m) do |m|
+class XxxxPlugin
+  include NinjaPlugin
+
+  match /rae/
+
+  def usage
+    "!xxx -- random xxx movie"
+  end
+
+  def execute(m)
     channels = [Xxx::Youporn, Xxx::Xvideos, Xxx::Pornhub]
     channel = channels.at(rand(channels.size)).new
     video = channel.random
-    m.reply "#{m.nick}: #{video.first} -- #{video.last} #NSFW"
+    m.reply "#{m.user.nick}: #{video.first} -- #{video.last} #NSFW"
   end
 end
+
+register_plugin XxxxPlugin

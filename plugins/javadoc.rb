@@ -1,6 +1,12 @@
-require 'open-uri'
+class JavaDocPlugin
+  include NinjaPlugin
 
-class JavaDoc
+  match /javadoc (.+)/
+
+  def usage
+    "!javadoc <class> [method] -- java documentation"
+  end
+
   def execute(bot, query)
     count = 0
 
@@ -43,13 +49,7 @@ class JavaDoc
       end
     end
 
-    bot.reply "#{bot.nick}: #{result}"
+    bot.reply "#{bot.user.nick}: #{result}"
   end
 end
-
-plugin "javadoc :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    JavaDoc.new.execute(m, args[:text])
-  end
-end
-
+register_plugin JavaDocPlugin

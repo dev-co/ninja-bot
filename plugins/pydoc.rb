@@ -1,6 +1,12 @@
-require 'open-uri'
+class PyDocPlugin
+  include NinjaPlugin
 
-class PyDoc
+  match /pydoc (.+)/
+
+  def usage
+    "!pydoc <class> [method] -- python documentation"
+  end
+
   def execute(bot, query)
     count = 0
 
@@ -37,13 +43,7 @@ class PyDoc
       end
     end
 
-    bot.reply "#{bot.nick}: #{result}"
+    bot.reply "#{bot.user.nick}: #{result}"
   end
 end
-
-plugin "pydoc :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    PyDoc.new.execute(m, args[:text])
-  end
-end
-
+register_plugin PyDocPlugin

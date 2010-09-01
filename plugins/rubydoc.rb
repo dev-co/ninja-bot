@@ -1,6 +1,12 @@
-require 'open-uri'
+class RubyDocPlugin
+  include NinjaPlugin
 
-class RubyDoc
+  match /rubydoc (.+)/
+
+  def usage
+    "!rubydoc <class> [method] -- ruby documentation"
+  end
+
   def execute(bot, query)
     count = 0
 
@@ -36,13 +42,8 @@ class RubyDoc
       end
     end
 
-    bot.reply "#{bot.nick}: #{result}"
+    bot.reply "#{bot.user.nick}: #{result}"
   end
 end
 
-plugin "rubydoc :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    RubyDoc.new.execute(m, args[:text])
-  end
-end
-
+register_plugin RubyDocPlugin

@@ -1,6 +1,12 @@
-require 'open-uri'
+class JsDocPlugin
+  include NinjaPlugin
 
-class JsDoc
+  match /jsdoc (.+)/
+
+  def usage
+    "!jsdoc <class> [method] -- javascript documentation"
+  end
+
   def execute(bot, query)
     count = 0
 
@@ -36,13 +42,9 @@ class JsDoc
       end
     end
 
-    bot.reply "#{bot.nick}: #{result}"
+    bot.reply "#{bot.user.nick}: #{result}"
   end
 end
 
-plugin "jsdoc :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    JsDoc.new.execute(m, args[:text])
-  end
-end
+register_plugin JsDocPlugin
 
