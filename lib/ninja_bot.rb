@@ -30,6 +30,7 @@ class NinjaBot < Cinch::Bot
         eval File.read(file)
       rescue Exception => e
         puts "Cannot load: #{e.inspect}"
+        sleep 3
       end
     end
     puts "*"*80

@@ -1,5 +1,4 @@
 require 'cgi'
-require 'ago'
 
 module Twitter
   class Search
@@ -113,9 +112,16 @@ module Twitter
   end
 end
 
-plugin "opinion :text" do |m|
-  safe_run(m, m.args) do |m, args|
-    text = args[:text]
+class TwitterPlugin
+  include NinjaPlugin
+
+  match /opinion (.+)/
+
+  def usage
+    "!opinion <query>"
+  end
+
+  def execute(m, text)
     lang = nil
     if text =~ /^:(\w\w) /
       lang = $1
@@ -134,10 +140,11 @@ plugin "opinion :text" do |m|
         source = shorten_url("http://twitter.com/#{twit["from_user"]}")
         text = twit["text"]
         t =Time.parse(twit["created_at"])
-        m.reply "#{m.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago})"
+        m.reply "#{m.user.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago})"
       end
     end
   end
 end
 
+register_plugin TwitterPlugin
 
