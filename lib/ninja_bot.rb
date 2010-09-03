@@ -18,7 +18,12 @@ class NinjaBot < Cinch::Bot
       self.config.send("#{k}=", v)
     end
 
-   load_plugins
+    load_plugins
+
+    on(:disconnect) do |m|
+      puts ">> Reconnecting..."
+      m.start(false)
+    end
   end
 
   private
