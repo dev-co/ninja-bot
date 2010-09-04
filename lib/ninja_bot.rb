@@ -22,6 +22,7 @@ class NinjaBot < Cinch::Bot
       self.config.send("#{k}=", v)
     end
 
+    load_models
     load_plugins
 
     on(:disconnect) do |m|
@@ -39,6 +40,12 @@ class NinjaBot < Cinch::Bot
   end
 
   private
+  def load_models
+    Dir["./models/*.rb"].each do |f|
+      require f
+    end
+  end
+
   def load_plugins
     puts "*"*80
     Dir["./plugins/*.rb"].each do |file|
