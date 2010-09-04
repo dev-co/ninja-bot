@@ -10,7 +10,13 @@ begin
     gem.email = "kuadrosxx@gmail.com"
     gem.homepage = "http://github.com/kuadrosx/ninja-bot"
     gem.authors = ["Jorge H. Cuadrado"]
-    gem.add_development_dependency "thoughtbot-shoulda"
+    gem.add_dependency "cinch", "~>1.0"
+    gem.add_dependency "mongo_mapper", "~>0.8"
+    gem.add_dependency "nokogiri"
+    gem.add_dependency "mechanize"
+    gem.add_dependency "httparty"
+    gem.add_dependency "ideone"
+    gem.add_dependency "imdb"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
 rescue LoadError
