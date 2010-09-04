@@ -32,7 +32,7 @@ class NinjaBot < Cinch::Bot
     Dir["./plugins/*.rb"].each do |file|
       puts "loading #{file}..."
       begin
-        eval File.read(file)
+        eval File.read(file), binding, file
       rescue Exception => e
         puts "Cannot load: #{e.inspect}"
         sleep 3
