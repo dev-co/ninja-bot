@@ -33,10 +33,10 @@ class NinjaBot < Cinch::Bot
 
   def database=(config)
     connection = Mongo::Connection.new(config[:host], config[:port])
-    connection.add_auth(config[:name], config[:user], config[:password]) if config[:user] && config[:password]
 
     MongoMapper.connection = connection
     MongoMapper.database = config[:name]
+    MongoMapper.database.authenticate(config[:user], config[:password]) if config[:user] && config[:password]
   end
 
   private
