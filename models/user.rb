@@ -19,6 +19,7 @@ class User
 
   has_many :messages, :class_name => "Message"
   has_many :normal_messages, :type => "normal", :class_name => "Message"
+  has_many :url_lists, :class_name => "UrlList"
 
   validates_uniqueness_of :nick, :scope => [:channel_id]
 
@@ -37,6 +38,29 @@ class User
     if type
       self.increment({:"#{type}_messages_count" => 1})
       message = self.messages.create(:type => type, :text => text)
+    end
+  end
+
+  def add_url(url, title)
+    today = Date.today.iso8601
+    url_list = self.url_lists.find_or_create_by_day(today)
+    url_list.add_to_set(:urls => {:link => url, :title => title})
+  end
+
+  def urls_for(day)
+    date = case day.to_s
+    when "today"
+      Date.today
+    when "yesterday"
+      Date.yesterday
+    else
+      Date.parse(day) rescue nil
+    end
+
+    if date && (url_list = self.url_lists.find_by_day(day))
+      url_list.urls
+    else
+      []
     end
   end
 
