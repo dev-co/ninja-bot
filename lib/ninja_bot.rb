@@ -42,6 +42,14 @@ class NinjaBot < Cinch::Bot
     MongoMapper.database.authenticate(config[:user], config[:password]) if config[:user] && config[:password]
   end
 
+  def self.known_plugins
+    @known_plugins ||= []
+  end
+
+  def plugins
+    instance_variable_get("@plugins")||[]
+  end
+
   private
   def self.load_models
     Dir["./models/*.rb"].each do |f|

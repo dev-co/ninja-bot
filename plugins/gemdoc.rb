@@ -4,7 +4,7 @@ class GemDocPlugin
   match /gemdoc (.+)/
 
   def usage
-    "gemdoc <query> -- search ruby gems"
+    "!gemdoc <query> -- search rubygem documentation"
   end
 
   def execute(m, query)
