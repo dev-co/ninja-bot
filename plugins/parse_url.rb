@@ -11,6 +11,10 @@ class ParseUrlPlugin
     if content = parse_url(url)
       m.reply content
 
+      if chan = m.channel
+        user = Channel.get_user(chan.name, m.user.nick)
+        user.add_url(url, content)
+      end
     end
   end
 end
