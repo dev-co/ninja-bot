@@ -20,12 +20,12 @@ class NinjaBot < Cinch::Bot
   def initialize(config)
     super()
 
-    self.database = config.delete(:database)||{}
+    self.class.database = config.delete(:database)||{}
     config.each do |k, v|
       self.config.send("#{k}=", v)
     end
 
-    load_models
+    self.class.load_models
     load_plugins
 
     on(:disconnect) do |m|
@@ -34,7 +34,7 @@ class NinjaBot < Cinch::Bot
     end
   end
 
-  def database=(config)
+  def self.database=(config)
     connection = Mongo::Connection.new(config[:host], config[:port])
 
     MongoMapper.connection = connection
@@ -43,7 +43,7 @@ class NinjaBot < Cinch::Bot
   end
 
   private
-  def load_models
+  def self.load_models
     Dir["./models/*.rb"].each do |f|
       require f
     end
