@@ -1,9 +1,15 @@
-irc.freenode.net: 
+irc.freenode.net:
   :nick: "NinjaBot"
-  :channels: 
+  :channels:
      - "#dev-co"
      - "#shapado"
   :port: 6667
   :realname: "Bot"
   :verbose: true
   :version: "NinjaBot v0.0.1"
+  :database:
+    :name: ninja-bot
+    :host: flame.mongohq.com
+    :port: 27042
+    :user: your-username
+    :password: your-password
