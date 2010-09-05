@@ -48,7 +48,7 @@ class User
   end
 
   def urls_for(day)
-    date = case day.to_s
+    date = case day.to_s.strip
     when "today"
       Date.today
     when "yesterday"
@@ -57,7 +57,7 @@ class User
       Date.parse(day) rescue nil
     end
 
-    if date && (url_list = self.url_lists.find_by_day(day))
+    if date && (url_list = self.url_lists.find_by_day(date.iso8601))
       url_list.urls
     else
       []
