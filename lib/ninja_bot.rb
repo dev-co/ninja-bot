@@ -1,14 +1,17 @@
 gem 'cinch', '~>1.0'
 require 'cinch'
+
+require 'ago'
+Time.class_eval { alias :ago_in_words :ago}
+
+gem 'mongo_mapper', '~>0.8'
+require 'mongo_mapper'
+
 require 'nokogiri'
 require 'httparty'
 require 'timeout'
 require 'open-uri'
 require 'mechanize'
-require 'ago'
-
-gem 'mongo_mapper', '~>0.8'
-require 'mongo_mapper'
 
 require 'ninja_plugin'
 require 'core_ext'

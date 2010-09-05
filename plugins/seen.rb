@@ -28,7 +28,8 @@ class SeenPlugin
     if user
       m.reply "#{rnick}: you need new glasses 8-)"
     elsif user = Channel.get_user(m.channel.name, nick, false)
-      m.reply "#{nick}: Last time I saw #{nick} was #{user.last_seen_at.ago}. it said: #{user.last_quit_message}"
+      puts user.last_seen_at.class
+      m.reply "#{rnick}: Last time I saw #{nick} was #{user.last_seen_at.ago_in_words}. it said: #{user.last_quit_message}"
     else
       m.reply "I've never seen that guy #{nick} over here."
     end

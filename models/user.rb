@@ -8,7 +8,7 @@ class User
 
   key :nick, String, :required => true
   key :last_seen_at, Time
-  key :last_quit_message, Time
+  key :last_quit_message, String
 
   key :messages_count, Integer, :default => 0
   key :question_messages_count, Integer, :default => 0
@@ -22,7 +22,6 @@ class User
 
   def add_message(text)
     self.increment({:messages_count => 1})
-
 
     type = nil
     if text =~ /^\!/

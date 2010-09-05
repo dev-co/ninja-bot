@@ -14,3 +14,11 @@ on :message, /.+/ do |message|
     end
   end
 end
+
+on :join do |message|
+  Channel.get_user(message.channel.name, message.user.nick)
+end
+
+on :quit do |message|
+  User.set({:nick => message.user.nick.downcase}, {:last_seen_at => Time.now, :last_quit_message => message.message})
+end
