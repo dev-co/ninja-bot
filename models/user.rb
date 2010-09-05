@@ -7,6 +7,8 @@ class User
   belongs_to :channel
 
   key :nick, String, :required => true
+  key :last_seen_at, Time
+  key :last_quit_message, Time
 
   key :messages_count, Integer, :default => 0
   key :question_messages_count, Integer, :default => 0
