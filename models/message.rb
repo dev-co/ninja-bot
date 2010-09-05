@@ -11,4 +11,10 @@ class Message
   key :text, String
 
   key :random, Float, :default => lambda { rand() }
+
+  def self.random_message(conditions = {})
+    r = rand()
+
+    self.first(conditions.merge({:random.gte => r})) || self.first(conditions.merge({:random.lte => r}))
+  end
 end
