@@ -140,7 +140,7 @@ class TwitterPlugin
         source = shorten_url("http://twitter.com/#{twit["from_user"]}")
         text = twit["text"]
         t =Time.parse(twit["created_at"])
-        m.reply "#{m.user.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago})"
+        m.reply "#{m.user.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago_in_words})"
       end
     end
   end
