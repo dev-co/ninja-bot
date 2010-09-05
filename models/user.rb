@@ -28,7 +28,7 @@ class User
 
     type = nil
     if text =~ /^\!/
-      type = "commmand"
+      type = "command"
     elsif text =~ /\?/
       type = "question"
     elsif text =~ /fuck|fu|mofo|\sput(a|o)\s|mierda|shit|malpar|hijue/
