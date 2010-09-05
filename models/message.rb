@@ -9,4 +9,6 @@ class Message
 
   key :type, String, :in => %w[normal command question badword quit part], :required => true
   key :text, String
+
+  key :random, Float, :default => lambda { rand() }
 end
