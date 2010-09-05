@@ -1,45 +1,17 @@
-require "open-uri"
+class ParseUrlPlugin
+  include NinjaPlugin
 
-def parse_url(m)
-  begin
-    xhtml = Nokogiri::HTML( open( "#{m.args[:text].strip}" ) )
-    if /https?:\/\/([a-z]*\.)?twitter.com\/(\w+)\/status(es)?\/(\d+)/ =~ m.args[:text]
-      xhtml.xpath( '//span[@class="entry-content"]' ).each do | tweet |
-	if ( tweet.content )
-	  m.reply tweet.content.gsub( /([\n\t])+{1,}/, " " ).strip
-	end
-      end
-    elsif /https?:\/\/identi.ca\/notice\/(\d+)/ =~ m.args[:text]
-      xhtml.xpath( '//p[@class="entry-content"]' ).each do | tweet |
-	if ( tweet.content )
-	  m.reply tweet.content.gsub( /([\n\t])+{1,}/, " " ).strip;
-	end
-      end
-    else
-      xhtml.xpath( "//head/title" ).each do | title |
-	if ( title.content )
-	  m.reply title.content.gsub( /([\n\t])+{1,}/, " " ).strip
-	end
-      end
-    end 
-  rescue Exception => e
-    p e
-  end  
-end
-#
-# Look if the message has a link and display his title.
-#
-# See: http://flanders.co.nz/2009/11/08/a-good-url-regular-expression-repost/
-add_custom_pattern(:url, /((?:(?:ht|f)tp(?:s?)\:\/\/|~\/|\/)?(?:\w+:\w+@)?(?:(?:[-\w\d{1-3}]+\.)+(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|co\.uk|ac\.uk|it|fr|tv|museum|asia|local|travel|[a-z]{2})?)(?::[\d]{1,5})?(?:(?:(?:\/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|\/)+|\?|#)?(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?)/)
+  def usage
+  end
 
-plugin ":text-url", {:prefix => ''} do |m|
-  parse_url (m)
+  prefix ""
+  match /((?:(?:ht|f)tp(?:s?)\:\/\/|~\/|\/)?(?:\w+:\w+@)?(?:(?:[-\w\d{1-3}]+\.)+(?:com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|co\.uk|ac\.uk|it|fr|tv|museum|asia|local|travel|[a-z]{2})?)(?::[\d]{1,5})?(?:(?:(?:\/(?:[-\w~!$+|.,=]|%[a-f\d]{2})+)+|\/)+|\?|#)?(?:(?:\?(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)(?:&(?:[-\w~!$+|.,*:]|%[a-f\d{2}])+=?(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)*)*(?:#(?:[-\w~!$+|.,*:=]|%[a-f\d]{2})*)?)/
+
+  def execute(m, url)
+    if content = parse_url(url)
+      m.reply content
+    end
+  end
 end
 
-plugin ":msg-text :text-url", {:prefix => ''} do |m|
-  parse_url (m)
-end
-
-plugin ":text-url :msg-text", {:prefix => ''} do |m|
-  parse_url (m)
-end
+register_plugin ParseUrlPlugin
