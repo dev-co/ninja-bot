@@ -10,6 +10,8 @@ class User
   key :last_seen_at, Time
   key :last_quit_message, String
 
+  key :karma, Integer, :default => 0
+
   key :messages_count, Integer, :default => 0
   key :question_messages_count, Integer, :default => 0
   key :badword_messages_count, Integer, :default => 0
@@ -36,5 +38,13 @@ class User
       self.increment({:"#{type}_messages_count" => 1})
       message = self.messages.create(:type => type, :text => text)
     end
+  end
+
+  def karma_up!
+    self.increment({:karma => 1})
+  end
+
+  def karma_down!
+    self.decrement({:karma => 1})
   end
 end

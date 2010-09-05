@@ -10,6 +10,7 @@ class ParseUrlPlugin
   def execute(m, url)
     if content = parse_url(url)
       m.reply content
+
     end
   end
 end
