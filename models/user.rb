@@ -9,17 +9,31 @@ class User
   key :nick, String, :required => true
 
   key :messages_count, Integer, :default => 0
+  key :question_messages_count, Integer, :default => 0
+  key :badword_messages_count, Integer, :default => 0
+  key :command_messages_count, Integer, :default => 0
 
   has_many :messages, :class_name => "Message"
   has_many :normal_messages, :type => "normal", :class_name => "Message"
 
   validates_uniqueness_of :nick, :scope => [:channel_id]
 
-  def add_message(txt)
-    puts "Add message: #{text}"
+  def add_message(text)
     self.increment({:messages_count => 1})
-    self.increment({:"#{type}_messages_count" => 1})
 
-#     message = self.messages.create(:type => type, :text => txt)
+
+    type = nil
+    if text =~ /^\!/
+      type = "commmand"
+    elsif text =~ /\?/
+      type = "question"
+    elsif text =~ /fuck|fu|mofo|\sput(a|o)\s|mierda|shit|malpar|hijue/
+      type = "badword"
+    end
+
+    if type
+      self.increment({:"#{type}_messages_count" => 1})
+      message = self.messages.create(:type => type, :text => text)
+    end
   end
 end
