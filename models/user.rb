@@ -10,6 +10,7 @@ class User
   key :last_seen_at, Time
   key :last_quit_message, String
 
+  key :given_points, Hash
   key :karma_up, Integer, :default => 0
   key :karma_down, Integer, :default => 0
 
@@ -77,6 +78,16 @@ class User
     end
   end
 
+  def given_points_today
+    p = self.given_points[Date.today.iso8601].to_i
+    self.set({:given_points => {}}) if p == 0
+    p
+  end
+
+  def given_points_up!
+    self.increment({:"given_points.#{Date.today.iso8601}" => 1})
+  end
+
   def karma_up!
     self.increment({:karma_up => 1})
   end
@@ -90,10 +101,11 @@ class User
   end
 
   def can_increase_karma?
-    self.messages_count > 100 && self.karma > 10
+    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 10
   end
 
   def can_decrease_karma?
-    self.messages_count > 100 && self.karma > 50
+    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 50
   end
 end
+
