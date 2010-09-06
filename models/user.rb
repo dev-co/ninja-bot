@@ -40,7 +40,7 @@ class User
       type = "command"
     elsif text =~ /\?/
       type = "question"
-    elsif text =~ /fuck|fu|mofo|\sput(a|o)\s|mierda|shit|malpar|hijue/
+    elsif text =~ /\b(fuck|mofo|put(a|o)|mierda|shit|malpar|hijue)/
       type = "badword"
     end
 
@@ -86,10 +86,10 @@ class User
   end
 
   def can_increase_karma?
-    self.messages_count > 100 && self.karma_up > 10
+    self.messages_count > 100 && self.karma > 10
   end
 
   def can_decrease_karma?
-    self.messages_count > 100 && self.karma_up > 50
+    self.messages_count > 100 && self.karma > 50
   end
 end
