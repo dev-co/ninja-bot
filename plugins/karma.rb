@@ -2,15 +2,25 @@ class KarmaPlugin
   include NinjaPlugin
 
   def usage
+    "!karma <nick>"
   end
 
+  match /karma (.+)/, :method => :stats
   match /\b(\S+)\s*(\+\+|\-\-)(\s|$)/, :use_prefix => false
+
+  def stats(m, nick)
+    if m.channel && (target = Channel.get_user(m.channel.name, nick, false))
+      m.reply "#{m.user.nick}: #{nick} has #{target.karma} points of karma"
+    end
+  end
 
   def execute(m, nick, oper)
     return if m.channel.nil?
 
     puts "NICK: #{nick.inspect}"
-    nick.sub!(":", "").downcase!
+    nick.sub!(":", "")
+    nick.downcase!
+
     rnick = m.user.nick
 
     if rnick.downcase == nick
