@@ -80,6 +80,7 @@ end
 namespace :ninjabot do
   desc "Load trivia data"
   task :load_trivia => :environment do
+    Question.destroy_all
     Dir.glob(File.dirname(__FILE__)+"/trivia/*").each do |path|
       puts "Loading: #{path}..."
       file = File.basename(path)
@@ -96,6 +97,7 @@ namespace :ninjabot do
                 "matematicas", "mitologia", "simpsons", "ciencias", "quimica",
                 "idiomas", "arte y literatura", "geografia", "biologia"].include?(data["category"])
               data.delete("author")
+              data["text"] = data.delete("question")
               Question.create!(data.merge(:language => language))
             end
 
