@@ -40,6 +40,10 @@ class User
       type = "command"
     elsif text =~ /\?/
       type = "question"
+    elsif text =~ /\:\)/
+      type = "happy"
+    elsif text =~ /\:\(/
+      type = "sad"
     elsif text =~ /\b(fuck|mofo|put(a|o)|mierda|shit|malpar|hijue)/
       type = "badword"
     end
