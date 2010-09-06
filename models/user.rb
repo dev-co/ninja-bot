@@ -10,7 +10,8 @@ class User
   key :last_seen_at, Time
   key :last_quit_message, String
 
-  key :karma, Integer, :default => 0
+  key :karma_up, Integer, :default => 0
+  key :karma_down, Integer, :default => 0
 
   key :messages_count, Integer, :default => 0
   key :question_messages_count, Integer, :default => 0
@@ -25,6 +26,14 @@ class User
 
   def add_message(text)
     self.increment({:messages_count => 1})
+
+    if self.karma_down == 0
+      if self.messages_count+1 > 10 && self.karma_up < 5
+        self.set({:karma_up => 5})
+      elsif self.messages_count+1 > 100 && self.karma_up < 10
+        self.set({:karma_up => 10})
+      end
+    end
 
     type = nil
     if text =~ /^\!/
@@ -65,10 +74,22 @@ class User
   end
 
   def karma_up!
-    self.increment({:karma => 1})
+    self.increment({:karma_up => 1})
   end
 
   def karma_down!
-    self.decrement({:karma => 1})
+    self.increment({:karma_down => 1})
+  end
+
+  def karma
+    self.karma_up - self.karma_down
+  end
+
+  def can_increase_karma?
+    self.messages_count > 100 && self.karma_up > 10
+  end
+
+  def can_decrease_karma?
+    self.messages_count > 100 && self.karma_up > 50
   end
 end
