@@ -28,7 +28,7 @@ class IdeonePugin
       paste_id = Ideone.submit( lang_id, code )
       result = Ideone.run( paste_id, nil )
 
-      bot.reply "#{bot.user.nick}: " + result.join( "\n" );
+      bot.reply "#{bot.user.nick}: " + result.chomp!.gsub( /\n/, ", " ).gsub( /[\s]{2,}/, " " )
     rescue Ideone::IdeoneError => e
       bot.reply "#{bot.user.nick}: " + e
     rescue Exception => e
