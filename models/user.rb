@@ -19,6 +19,8 @@ class User
   key :badword_messages_count, Integer, :default => 0
   key :command_messages_count, Integer, :default => 0
 
+  key :fans, Array
+
   has_many :messages, :class_name => "Message"
   has_many :normal_messages, :type => "normal", :class_name => "Message"
   has_many :url_lists, :class_name => "UrlList"
@@ -76,6 +78,10 @@ class User
     else
       []
     end
+  end
+
+  def add_fan(nick)
+    self.add_to_set({:fans => nick})
   end
 
   def given_points_today
