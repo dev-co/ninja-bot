@@ -1,5 +1,7 @@
+# encoding: UTF-8
 require 'rubygems'
 require 'rake'
+
 
 begin
   require 'jeweler'
@@ -81,7 +83,7 @@ namespace :ninjabot do
   desc "Load trivia data"
   task :load_trivia => :environment do
     Question.destroy_all
-    Dir.glob(File.dirname(__FILE__)+"/trivia/*").each do |path|
+    Dir.glob(File.dirname(__FILE__)+"/trivia/*.txt").each do |path|
       puts "Loading: #{path}..."
       file = File.basename(path)
       language = file.split(".").last
@@ -89,20 +91,16 @@ namespace :ninjabot do
       File.open(path, "r") do |f|
         data = {}
         f.each_line do |line|
-          if line =~ /^(\w+)\:\s(.+)$/
-            data[$1.downcase.strip] = $2.strip
-          elsif line.strip == "" && data["category"]
-            data["category"].downcase!
-            if ["lengua", "cultura", "fisica-quimica", "historia",
-                "matematicas", "mitologia", "simpsons", "ciencias", "quimica",
-                "idiomas", "geografia", "biologia"].include?(data["category"])
-              data.delete("author")
-              data["text"] = data.delete("question")
-              Question.create(data.merge(:language => language))
-            end
+          line.downcase!
 
-            data = {}
-          end
+          category, rest = line.split("©", 2)
+          author, rest = rest.split("«", 2)
+          text, answer = rest.split("*", 2)
+
+          Question.create(:language => "es",
+                          :text => text.strip.sub!(/\.$/, "?"),
+                          :category => category,
+                          :answer => answer.strip)
         end
       end
     end
