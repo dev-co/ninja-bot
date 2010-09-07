@@ -1,0 +1,40 @@
+require "ideone"
+
+class IdeonePugin
+  include NinjaPlugin
+
+  match /ideone (.+?) (.+)/
+
+  def usage
+    "!ideone <language> <code> -- ideone proxy"
+  end
+
+  def execute( bot, lang, code )
+    begin
+      lang = lang.chomp.downcase
+      lang_id = Ideone::LANGUAGES[lang.to_sym] || Ideone::LANGUAGES[lang]
+
+      if lang_id == nil
+        bot.reply "#{bot.user.nick}: language not found"
+        raise ArgumentError, "language not found"
+      end
+
+      code = code.strip.chomp
+
+      if !lang.match( /^<\?(?:php)?/i ) && lang_id == Ideone::LANGUAGES[:php]
+        code = "<?php " + code
+      end
+
+      paste_id = Ideone.submit( lang_id, code )
+      result = Ideone.run( paste_id, nil )
+
+      bot.reply "#{bot.user.nick}: " + result.join( "\n" );
+    rescue Ideone::IdeoneError => e
+      bot.reply "#{bot.user.nick}: " + e
+    rescue Exception => e
+      puts e
+    end
+  end
+end
+
+register_plugin IdeonePugin
