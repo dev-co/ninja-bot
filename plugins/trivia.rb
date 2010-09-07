@@ -42,7 +42,7 @@ on :message do |m|
       end
     end
 
-    if @current_delay[chan] && (Thread.current[:locked_at] || @last_ping_at[chan].nil? || (Time.now - @last_ping_at[chan]) > @current_delay[chan])
+    if @current_delay[chan] && (@last_ping_at[chan].nil? || (Time.now - @last_ping_at[chan]) > @current_delay[chan])
       if @current_question[chan]
         m.reply "TIMEOUT! The answer was: #{@current_question[chan].answer}"
       end
