@@ -10,7 +10,7 @@ class GitHubPlugin
     "!github <query> -- repo search in github.com"
   end
 
-  def execute(bot, query)
+  def execute(m, query)
     result = JSON.parse(open("http://github.com/api/v1/json/search/#{URI.escape(query)}").read)
     if result["repositories"].empty?
       reply = "I don't know to #{query} :|"
@@ -18,7 +18,7 @@ class GitHubPlugin
       project = result["repositories"][0]
       reply = "#{project['name']}: http://github.com/#{project['username']}/#{project['name']}"
     end
-    bot.reply "#{bot.user.nick}: #{reply}"
+    bot.reply "#{m.user.nick}: #{reply}"
   end
 end
 

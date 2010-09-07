@@ -10,14 +10,14 @@ class GemPlugin
     "!gem <gem-name> -- search on rubygems.org"
   end
 
-  def execute(bot, query)
+  def execute(m, query)
     begin
       result = JSON.parse(open("http://rubygems.org/api/v1/gems/#{URI.escape(query)}.json").read)
       reply = "#{result['name']} (by #{result['authors']}): #{result['project_uri']}"
     rescue
       reply = "I don't know to #{query} gem :/"
     end
-      bot.reply "#{bot.user.nick}: #{reply}"
+      bot.reply "#{m.user.nick}: #{reply}"
   end
 end
 
