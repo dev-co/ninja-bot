@@ -120,11 +120,6 @@ Question: Como se llama el sirviente de Bruce Wayne?
 Answer: Alfred
 Author: AlejANdriA
 
-Category: Canciones
-Question: Y veras como quieren en Chile...?
-Answer: Al Amigo Cuando Es Forastero
-Author: AlejANdriA
-
 Category: Carrete
 Question: Discotheque de Stgo estilo Egipcio?
 Answer: Luxor
@@ -296,21 +291,6 @@ Answer: Santiago
 Author: Top_Gun
 
 Category: Cultura
-Question: Cual es la capital de la IX Region ?
-Answer: Temuco
-Author: Top_Gun
-
-Category: Cultura
-Question: Cual es la comida tipica de Chile ?
-Answer: Los Porotos
-Author: Top_Gun
-
-Category: Cultura
-Question: Que significa la sigla ADIDAS ?
-Answer: Asosiacion De Idiotas Dispuestos A Superarse
-Author: Top_Gun
-
-Category: Cultura
 Question: Capital de Estados Unidos ?
 Answer: Washington D.C.
 Author: Yluvatar
@@ -441,21 +421,6 @@ Answer: Bulgaria
 Author: XDevilX
 
 Category: Historia
-Question: Cual fue el nombre completo del presidente de Chile en los años 1964 - 1970 ?
-Answer: Eduardo Frei Montalva
-Author: Top_Gun
-
-Category: Historia
-Question: Cuantas son las regiones de chile ? (en palabras)
-Answer: Trece Regiones
-Author: Top_Gun
-
-Category: Historia
-Question: Que tomaron los revolucionarios franceses en 1789 ?
-Answer: La Bastilla
-Author: XDevilX
-
-Category: Historia
 Question: Quien fue el primer Zar de Rusia ?
 Answer: Ivan IV
 Author: XDevilX
@@ -483,11 +448,6 @@ Author: Yluvatar
 Category: Historia
 Question: Policia alemana durante la 2ª guerra mundial, mas conocida como... ?
 Answer: Gestapo
-Author: Yluvatar
-
-Category: Historia
-Question: Primer Dictador en la Historia de Chile ?
-Answer: Bernardo O'Higgins
 Author: Yluvatar
 
 Category: Humor
@@ -919,21 +879,6 @@ Category: Politica
 Question: Quien cago en las elecciones de EEUU ?
 Answer: Al Gore
 Author: AlejANdriA
-
-Category: Politica
-Question: Nombre del que se presento a la presidencia de Chile por la consertacion ?
-Answer: Ricardo Lagos
-Author: Ken_Shin
-
-Category: Politica
-Question: Nombre del que se presento a la presidencia de Chile por la derecha ?
-Answer: Joaquin Lavin
-Author: Ken_Shin
-
-Category: Politica
-Question: Nombre del que se presento a la presidencia de Chile por la izquierda ?
-Answer: Gladis Marin
-Author: Ken_Shin
 
 Category: Politica
 Question: Cualquier forma de gobierno en que se ejerza opresion sobre los gobernados ?

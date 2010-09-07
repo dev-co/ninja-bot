@@ -645,52 +645,52 @@ Question: en que parte del cuerpo está el deltoides
 Answer: hombro
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cual es el símbolo químico del Sodio
 Answer: Na
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cual es el símbolo químico del Potasio
 Answer: K
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cual es el símbolo químico del Estroncio
 Answer: Sr
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo Rn
 Answer: radon
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo Ar
 Answer: argon
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo Kr
 Answer: kripton
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo Se
 Answer: selenio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo La
 Answer: lantanio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo Ac
 Answer: actinio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento corresponde el símbolo Li
 Answer: litio
 Author: Pablo
@@ -800,62 +800,62 @@ Question: Director de "Romeo debe morir"
 Answer: Andrzej Bartkowiak
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Navalosa
 Answer: Avila
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Taravilla
 Answer: Guadalajara
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Arenas de Cabrales
 Answer: Asturias
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está el Cabo de Gata
 Answer: Almeria
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Valencia de Alcántara
 Answer: Caceres
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: Dónde está la Caldera de Taburiente
 Answer: La Palma
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está el Monasterio de Núria
 Answer: Girona
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está el Monasterio del Puig
 Answer: Valencia
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Pereña
 Answer: Salamanca
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Villanueva de Castellón
 Answer: Valencia
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está Nules
 Answer: Castellon de la Plana
 Author: Pablo
 
-Category: Geografía Española
+Category: Geografia Española
 Question: En qué provincia está El Campello
 Answer: Alicante
 Author: Pablo
@@ -1345,597 +1345,597 @@ Question: De quien es el superexito "I belong to you"
 Answer: Lenny Kravitz
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Albania
 Answer: Tirana
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Dinamarca
 Answer: Copenhague
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Islandia
 Answer: Reykjavik
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Malta
 Answer: La Valetta
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Liechtenstein
 Answer: Vaduz
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Suiza
 Answer: Berna
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Rumania
 Answer: Bucarest
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Filipinas
 Answer: Manila
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Iran
 Answer: Teheran
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Israel
 Answer: Jerusalem
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Líbano
 Answer: Beirut
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Nepal
 Answer: Katmandu
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Taiwán
 Answer: Taipei
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Burkina Fasso
 Answer: Ouagadougou
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Camerún
 Answer: Yaounde
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Congo
 Answer: Brazzaville
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Etiopía
 Answer: Addis Abeba
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Líbia
 Answer: Tripoli
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Marruecos
 Answer: Rabat
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Somalia
 Answer: Mogadiscio
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Zambia
 Answer: Lusaka
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Cuba
 Answer: La Habana
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Costa Rica
 Answer: La Paz
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Ecuador
 Answer: Quito
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Honduras
 Answer: Tegucigalpa
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Perú
 Answer: Lima
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Uruguay
 Answer: Montevideo
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Venezuela
 Answer: Caracas
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Australia
 Answer: Canberra
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Hawai
 Answer: Honolulu
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Nueva Zelanda
 Answer: Wellington
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Estados Unidos
 Answer: Washington
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Brasil
 Answer: Brasilia
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de Canada
 Answer: Ottawa
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Capital de España
 Answer: Madrid
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Alemania
 Answer: marco
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Francia
 Answer: franco frances
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Grecia
 Answer: dracma
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Italia
 Answer: lira
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Polonia
 Answer: zloty
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Portugal
 Answer: escudo
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Rumania
 Answer: leu
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de China
 Answer: yuan
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Iran
 Answer: rial
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Macao
 Answer: pataca
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Qatar
 Answer: riyal
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Argentina
 Answer: austral
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Brasil
 Answer: cruceiro
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Cuba
 Answer: peso
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Ecuador
 Answer: sucre
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Guatemala
 Answer: quetzal
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Panamá
 Answer: balboa
 Author: Pablo
 
-Category: Geografía
+Category: Geografia
 Question: Moneda de Peru
 Answer: sol
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Paterna
 Answer: Valencia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Calatayud
 Answer: Zaragoza
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Ferrol
 Answer: La Coruña
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Sobrado de los Monjes
 Answer: La Coruña
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Astorga
 Answer: Leon
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Gandaras de Piñeiro
 Answer: Lugo
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Magaz
 Answer: Palencia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Torquemada
 Answer: Palencia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Medina del Campo
 Answer: Valladolid
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta San Sebastian de los Reyes
 Answer: Madrid
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Botoa
 Answer: Badajoz
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Mérida
 Answer: Badajoz
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Almagro
 Answer: Ciudad Real
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta La Pobla de Vallbona
 Answer: Valencia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Pozuelo
 Answer: Madrid
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Viator
 Answer: Almeria
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta San Fernando
 Answer: Cadiz
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Obejo
 Answer: Cordoba
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Ronda
 Answer: Malaga
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Alcala de Guadaira
 Answer: Sevilla
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Dos Hermanas
 Answer: Sevilla
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Chinchilla
 Answer: Albacete
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Alcantarilla
 Answer: Murcia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Javali Nuevo
 Answer: Murcia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Betera
 Answer: Valencia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Marines
 Answer: Valencia
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta San Clemente de Sasebas
 Answer: Girona
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Jaca
 Answer: Huesca
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Talarn
 Answer: Lleida
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Viella
 Answer: Lleida
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Castejon de Valdejasa
 Answer: Zaragoza
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Huermeces
 Answer: Burgos
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Guadix
 Answer: Granada
 Author: Pablo
 
-Category: Geografía-España
+Category: Geografia-España
 Question: En que provincia esta Manises
 Answer: Valencia
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cual es el símbolo químico del rubidio
 Answer: Rb
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cual es el símbolo químico del Estroncio
 Answer: Sr
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cual es el símbolo químico del Estaño
 Answer: Sn
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Fr
 Answer: Francio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Y
 Answer: Itrio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Sc
 Answer: Escandio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Zr
 Answer: Circonio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Hf
 Answer: Hafnio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Mo
 Answer: Molibdeno
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Ru
 Answer: Rutenio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Rh
 Answer: Rodio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Zn
 Answer: Cinc
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Hg
 Answer: Mercurio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Ge
 Answer: Germanio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Sn
 Answer: Estaño
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Sb
 Answer: antimonio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Te
 Answer: telurio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Es
 Answer: Einstenio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: A que elemento químico corresponde el símbolo Lw
 Answer: Lawrencio
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Químico británico que enunció la ley de las proporciones múltiples
 Answer: John Dalton
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cuales son los estados en que se puede presentar la materia
 Answer: solido liquido y gaseoso
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Fuerza que ejerce un gas sobre una superficie
 Answer: presion
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Que ley relaciona la presión y el volumen
 Answer: Ley de Boyle-Mariotte
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Fenomeno por el que un líquido pasa a estado gaseoso
 Answer: ebullicion
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Descomposición de un cuerpo debido al paso de la electricidad
 Answer: electrolisis
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Como se llaman las reacciones que absorben energía calorífica
 Answer: endotermicas
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Como se llaman las reacciones que desprenden energía calorífica
 Answer: exotermicas
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Primer elemento de la tabla periodica
 Answer: hidrogeno
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Cuarto elemento más abundante en la corteza terrestre
 Answer: hierro
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Como se llama el hidrocarburo que tiene 5 carbonos
 Answer: pentano
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Como se llama el hidrocarburo que tiene 20 carbonos
 Answer: eicosano
 Author: Pablo
 
-Category: Química
+Category: Quimica
 Question: Como se llama el hidrocarburo que tiene 100 carbonos
 Answer: hectano
 Author: Pablo

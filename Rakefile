@@ -89,16 +89,16 @@ namespace :ninjabot do
       File.open(path, "r") do |f|
         data = {}
         f.each_line do |line|
-          if line =~ /(\w+)\:\s(.+)/
-            data[$1.downcase] = $2
+          if line =~ /^(\w+)\:\s(.+)$/
+            data[$1.downcase.strip] = $2.strip
           elsif line.strip == "" && data["category"]
             data["category"].downcase!
-            if ["cine", "cultura", "fisica-quimica", "historia", "literatura",
+            if ["lengua", "cultura", "fisica-quimica", "historia",
                 "matematicas", "mitologia", "simpsons", "ciencias", "quimica",
-                "idiomas", "arte y literatura", "geografia", "biologia"].include?(data["category"])
+                "idiomas", "geografia", "biologia"].include?(data["category"])
               data.delete("author")
               data["text"] = data.delete("question")
-              Question.create!(data.merge(:language => language))
+              Question.create(data.merge(:language => language))
             end
 
             data = {}
