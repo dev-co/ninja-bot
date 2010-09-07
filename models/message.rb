@@ -7,7 +7,7 @@ class Message
   key :user_id, String, :required => true
   belongs_to :user
 
-  key :type, String, :in => %w[normal command question badword quit part], :required => true
+  key :type, String, :required => true
   key :text, String
 
   key :random, Float, :default => lambda { rand() }

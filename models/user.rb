@@ -10,6 +10,7 @@ class User
   key :last_seen_at, Time
   key :last_quit_message, String
 
+  key :given_points, Hash
   key :karma_up, Integer, :default => 0
   key :karma_down, Integer, :default => 0
 
@@ -17,6 +18,8 @@ class User
   key :question_messages_count, Integer, :default => 0
   key :badword_messages_count, Integer, :default => 0
   key :command_messages_count, Integer, :default => 0
+
+  key :fans, Array
 
   has_many :messages, :class_name => "Message"
   has_many :normal_messages, :type => "normal", :class_name => "Message"
@@ -40,7 +43,11 @@ class User
       type = "command"
     elsif text =~ /\?/
       type = "question"
-    elsif text =~ /fuck|fu|mofo|\sput(a|o)\s|mierda|shit|malpar|hijue/
+    elsif text =~ /\:\)/
+      type = "happy"
+    elsif text =~ /\:\(/
+      type = "sad"
+    elsif text =~ /\b(fuck|mofo|put(a|o)|mierda|shit|malpar|hijue)/
       type = "badword"
     end
 
@@ -73,6 +80,20 @@ class User
     end
   end
 
+  def add_fan(nick)
+    self.add_to_set({:fans => nick})
+  end
+
+  def given_points_today
+    p = self.given_points[Date.today.iso8601].to_i
+    self.set({:given_points => {}}) if p == 0
+    p
+  end
+
+  def given_points_up!
+    self.increment({:"given_points.#{Date.today.iso8601}" => 1})
+  end
+
   def karma_up!
     self.increment({:karma_up => 1})
   end
@@ -86,10 +107,11 @@ class User
   end
 
   def can_increase_karma?
-    self.messages_count > 100 && self.karma_up > 10
+    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 10
   end
 
   def can_decrease_karma?
-    self.messages_count > 100 && self.karma_up > 50
+    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 50
   end
 end
+
