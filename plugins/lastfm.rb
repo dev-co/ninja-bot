@@ -29,13 +29,14 @@ end
 class NowPlayingPlugin
   include NinjaPlugin
 
-  match /np (.+)/
+  match /np (.+)/, method: :np_user
+  match /np/, method: :np
 
   def usage
-    "!np <user> -- display top weekly artists"
+    "!np [user] -- display last played song"
   end
 
-  def execute(bot, query)
+  def np_user(bot, query)
     begin
       result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(query)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
       last_song = result["recenttracks"]["track"][0]
@@ -44,6 +45,17 @@ class NowPlayingPlugin
       reply = "The user #{query} doesn't have a Last.fm account"
     end
     bot.reply "#{bot.user.nick}: #{reply}"
+  end
+  
+  def np(bot)
+    begin
+      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(bot.user.nick)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
+      last_song = result["recenttracks"]["track"][0]
+      reply = "#{last_song['name']} by #{last_song['artist']['#text']}"
+    rescue
+      reply = "The user #{query} doesn't have a Last.fm account"
+    end
+    bot.reply "#{bot.user.nick}: #{reply}"    
   end
 end
 
