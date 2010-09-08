@@ -15,9 +15,10 @@ class GemPlugin
       result = JSON.parse(open("http://rubygems.org/api/v1/gems/#{URI.escape(query)}.json").read)
       reply = "#{result['name']} (by #{result['authors']}): #{result['project_uri']}"
     rescue
-      reply = "I don't know to #{query} gem :/"
+      reply = "I don't know any #{query} gem :/"
     end
-      bot.reply "#{m.user.nick}: #{reply}"
+
+    m.reply "#{m.user.nick}: #{reply}"
   end
 end
 
