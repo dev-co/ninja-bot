@@ -15,6 +15,7 @@ class Message
   def self.random_message(conditions = {})
     r = rand()
 
+    conditions[:sort] = "random asc"
     self.first(conditions.merge({:random.gte => r})) || self.first(conditions.merge({:random.lte => r}))
   end
 end

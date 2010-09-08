@@ -85,12 +85,18 @@ class User
   end
 
   def given_points_today
-    p = self.given_points[Date.today.iso8601].to_i
-    self.set({:given_points => {}}) if p == 0
-    p
+    p = self.given_points[Date.today.iso8601]
+    if p.nil?
+      self.set({:given_points => {}})
+      self.set({:"given_points.#{Date.today.iso8601}" => 0})
+    end
+
+    p.to_i
   end
 
   def given_points_up!
+    self.given_points[Date.today.iso8601] ||= 0
+    self.given_points[Date.today.iso8601] += 1
     self.increment({:"given_points.#{Date.today.iso8601}" => 1})
   end
 

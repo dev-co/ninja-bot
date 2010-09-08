@@ -8,11 +8,11 @@ class Question
   key :answer, String
 
   key :asked_times, Integer, :default => 0
-  key :random, Float, :default => lambda {rand()}
+  key :random, Float, :default => lambda {rand()}, :index => true
   
   def self.random_question(conditions = {})
     r = rand()
-    conditions[:sort] = "asked_times asc"
+    conditions[:sort] = "asked_times asc, random asc"
     Question.first(conditions.merge(:random.gte => r)) || Question.first(conditions.merge(:random.lte => r))
   end
 end

@@ -1,5 +1,4 @@
 require 'json'
-require 'open-uri'
 
 class LastfmPlugin
   include NinjaPlugin
@@ -44,9 +43,9 @@ class NowPlayingPlugin
     rescue
       reply = "The user #{query} doesn't have a Last.fm account"
     end
-    bot.reply "#{m.user.nick}: #{reply}"
+    m.reply "#{m.user.nick}: #{reply}"
   end
-  
+
   def np(m)
     begin
       result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(m.user.nick)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
@@ -55,7 +54,7 @@ class NowPlayingPlugin
     rescue
       reply = "The user #{m.user.nick} doesn't have a Last.fm account"
     end
-    bot.reply "#{m.user.nick}: #{reply}"    
+    m.reply "#{m.user.nick}: #{reply}"
   end
 end
 
