@@ -5,7 +5,7 @@ module NinjaPlugin
   end
 
   def usage
-    raise NotImplementedError
+    ""
   end
 
   def shorten_url(url)

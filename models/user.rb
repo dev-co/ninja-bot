@@ -30,6 +30,8 @@ class User
   def add_message(text)
     self.increment({:messages_count => 1})
 
+    return if text.split(" ").size < 2
+
     if self.karma_down == 0
       if self.messages_count+1 > 10 && self.karma_up < 5
         self.set({:karma_up => 5})

@@ -5,6 +5,10 @@ class GooglePlugin
 
   match /google (.+)/
 
+  def usage
+    "!google - search on google and return the first result"
+  end
+
   def search(query)
     url = "http://www.google.com/search?q=#{CGI.escape(query)}"
     res = Nokogiri::HTML(open(url)).at("h3.r")
