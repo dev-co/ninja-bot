@@ -7,7 +7,7 @@ class KarmaPlugin
 
   match /karma (.+)/, :method => :stats
   match /fans (.+)/, :method => :fans
-  match /\b(\S+)\s*(\+\+|\-\-)(\s|$)/, :use_prefix => false
+  match /\b(\S+)\s*(\+\+|\-\-|\+1)(\s|$)/, :use_prefix => false
 
   def stats(m, nick)
     if m.channel && (target = Channel.get_user(m.channel.name, nick, false))
@@ -29,7 +29,6 @@ class KarmaPlugin
     return if m.channel.nil?
 
     synchronize(:karma) do
-      puts "NICK: #{nick.inspect}"
       nick.sub!(":", "")
       nick.downcase!
 
@@ -51,7 +50,7 @@ class KarmaPlugin
         target = Channel.get_user(m.channel.name, irc_user.nick)
         source = Channel.get_user(m.channel.name, rnick)
 
-        if oper == "++" && source.can_increase_karma?
+        if (oper == "++" || oper == "+1") && source.can_increase_karma?
           target.karma_up!
           target.add_fan(source.nick)
           source.given_points_up!

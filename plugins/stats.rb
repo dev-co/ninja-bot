@@ -20,5 +20,6 @@ on :join do |message|
 end
 
 on :quit do |message|
-  User.set({:nick => message.user.nick.downcase}, {:last_seen_at => Time.now, :last_quit_message => message.message})
+  @bot.localize!
+  User.set({:nick => message.user.nick.downcase}, {:last_seen_at => Time.zone.now, :last_quit_message => message.message})
 end

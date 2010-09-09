@@ -122,6 +122,8 @@ class TwitterPlugin
   end
 
   def execute(m, text)
+    localize!
+
     lang = nil
     if text =~ /^:(\w\w) /
       lang = $1
@@ -139,7 +141,7 @@ class TwitterPlugin
       if twit
         source = shorten_url("http://twitter.com/#{twit["from_user"]}")
         text = twit["text"]
-        t =Time.parse(twit["created_at"])
+        t =Time.zone.parse(twit["created_at"])
         m.reply "#{m.user.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago_in_words})"
       end
     end

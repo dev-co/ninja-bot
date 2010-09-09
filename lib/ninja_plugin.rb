@@ -31,4 +31,8 @@ module NinjaPlugin
 
     content
   end
+
+  def localize!
+    NinjaBot.localize!
+  end
 end

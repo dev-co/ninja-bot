@@ -27,6 +27,8 @@ end
 
 on :message do |m|
   @bot.synchronize(:trivia) do
+    @bot.localize!
+
     @current_question ||= {}
     @last_ping_at ||= {}
     @current_delay ||= {}
@@ -69,14 +71,14 @@ on :message do |m|
         end
       end
 
-      if @current_delay[chan] && (@last_ping_at[chan].nil? || (Time.now - @last_ping_at[chan]) > @current_delay[chan])
+      if @current_delay[chan] && (@last_ping_at[chan].nil? || (Time.zone.now - @last_ping_at[chan]) > @current_delay[chan])
         if @current_question[chan]
           m.reply "TIMEOUT! The answer was: #{@current_question[chan].answer}"
         end
 
         question = @current_question[chan] = Question.random_question
 
-        @last_ping_at[chan] = Time.now
+        @last_ping_at[chan] = Time.zone.now
         @tries[chan] = 0
 
         question.increment({:asked_times => 1})

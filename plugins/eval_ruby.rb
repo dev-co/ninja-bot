@@ -23,7 +23,7 @@ class EvalRubyPlugin
       }.join
     end
 
-    m.reply "#{m.user.nick}: #{result}"
+    m.reply "#{m.user.nick}: #{result[0,200]}"
   end
 end
 

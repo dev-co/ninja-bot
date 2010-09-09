@@ -12,6 +12,7 @@ require 'httparty'
 require 'timeout'
 require 'open-uri'
 require 'mechanize'
+require 'json'
 
 require 'ninja_plugin'
 require 'core_ext'
@@ -20,17 +21,15 @@ class NinjaBot < Cinch::Bot
   def initialize(config)
     super()
 
-    self.class.database = config.delete(:database)||{}
     config.each do |k, v|
       self.config.send("#{k}=", v)
     end
 
-    self.class.load_models
     load_plugins
 
     on(:disconnect) do |m|
       puts ">> Reconnecting..."
-      m.start(false)
+      @bot.start(false)
     end
   end
 
@@ -50,17 +49,41 @@ class NinjaBot < Cinch::Bot
     instance_variable_get("@plugins")||[]
   end
 
+  def localize!
+    self.class.localize!
+  end
+
+  def self.localize!
+    # TODO: load i18n
+    Time.zone = self.ninja_config["timezone"] || "UTC"
+  end
+
+  def self.ninja_config
+    @ninja_config ||= {}
+  end
+
+  def self.load_config(path)
+    raw_config = File.read(path)
+    @ninja_config = YAML.load(raw_config)
+
+    Time.zone = @ninja_config["timezone"]
+    NinjaBot.database = @ninja_config["database"]
+    NinjaBot.load_models
+
+    @ninja_config
+  end
+
   private
   def self.load_models
-    Dir["./models/*.rb"].each do |f|
+    Dir[File.dirname(__FILE__)+"/../models/*.rb"].each do |f|
       require f
     end
   end
 
   def load_plugins
     puts "*"*80
-    Dir["./plugins/*.rb"].each do |file|
-      puts "loading #{file}..."
+    Dir[File.dirname(__FILE__)+"/../plugins/*.rb"].each do |file|
+      puts ">> Loading #{file}..."
       begin
         eval File.read(file), binding, file
       rescue Exception => e

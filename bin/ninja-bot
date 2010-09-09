@@ -4,16 +4,14 @@ $:.unshift File.expand_path(File.dirname(__FILE__)+"/../lib/")
 
 require 'yaml'
 require 'ninja_bot'
-p File.file?( "config/ninja-bot.yml" )
-if ( false == File.file?( "config/ninja-bot.yml" ) )
-  p "<< Please config your bot first!, rename ninja-bot.dist.yml to ninja-bot.yml"
+
+config_file = ARGV[0] || File.dirname(__FILE__)+"/../config/ninja-bot.yml"
+
+if !File.file?(config_file)
+  p "<< Please config your bot first!, rename ninja-bot.dist.yml to #{config_file}"
   exit
 end
 
-raw_config = File.read("config/ninja-bot.yml")
-APP_CONFIG = YAML.load(raw_config)
+config = NinjaBot.load_config(config_file)
 
-APP_CONFIG.each do |server, options|
-  options[:server] = server
-  NinjaBot.new(options).start
-end
+NinjaBot.new(config[ARGV[1] || "network"]).start

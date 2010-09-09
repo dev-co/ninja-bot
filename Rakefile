@@ -68,25 +68,16 @@ task :environment do
   $:.unshift File.dirname(__FILE__)+"/lib"
   require 'ninja_bot'
 
-  raw_config = File.read(File.dirname(__FILE__)+"/config/ninja-bot.yml")
-  APP_CONFIG = YAML.load(raw_config)
-  APP_CONFIG.each do |server, opts|
-    if opts[:database]
-      NinjaBot.database=opts.delete(:database)
-      NinjaBot.load_models
-      break
-    end
-  end
+  NinjaBot.load_config(File.dirname(__FILE__)+"/config/ninja-bot.yml")
 end
 
 namespace :ninjabot do
   desc "Load trivia data"
   task :load_trivia => :environment do
-    Question.destroy_all
+    #Question.destroy_all
     Dir.glob(File.dirname(__FILE__)+"/trivia/*.txt").each do |path|
       puts "Loading: #{path}..."
       file = File.basename(path)
-      language = file.split(".").last
 
       File.open(path, "r") do |f|
         data = {}
@@ -97,10 +88,12 @@ namespace :ninjabot do
           author, rest = rest.split("«", 2)
           text, answer = rest.split("*", 2)
 
+          next if text.blank? || category.blank? || answer.blank?
+
           Question.create(:language => "es",
-                          :text => text.strip.sub!(/\.$/, "?"),
-                          :category => category,
-                          :answer => answer.strip)
+                           :text => text.strip.sub(/\.$/, "?"),
+                           :category => category.strip,
+                           :answer => answer.strip)
         end
       end
     end

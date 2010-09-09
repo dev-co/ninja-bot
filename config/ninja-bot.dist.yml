@@ -1,15 +1,18 @@
-irc.freenode.net:
+timezone: Bogota
+database:
+  :name: ninja-bot
+  :host: flame.mongohq.com
+  :port: 27042
+  :user: your user
+  :password: your pass
+
+network:
+  :server: irc.freenode.net
   :nick: "NinjaBot"
   :channels:
-     - "#dev-co"
-     - "#shapado"
+     - "#cinch-bots"
   :port: 6667
-  :realname: "Bot"
+  :realname: "http:://github.com/dev_co/ninja-bot"
   :verbose: true
-  :version: "NinjaBot v0.0.1"
-  :database:
-    :name: ninja-bot
-    :host: flame.mongohq.com
-    :port: 27042
-    :user: your-username
-    :password: your-password
+  :version: "NinjaBot v3.0"
+
