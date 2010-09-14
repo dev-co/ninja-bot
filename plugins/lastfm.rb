@@ -21,7 +21,7 @@ class LastfmPlugin
     rescue
       reply = "The user #{query} doesn't have a Last.fm account"
     end
-    bot.reply "#{m.user.nick}: #{reply}"
+    m.reply "#{m.user.nick}: #{reply}"
   end
 end
 
