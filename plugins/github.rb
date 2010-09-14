@@ -18,7 +18,7 @@ class GitHubPlugin
       project = result["repositories"][0]
       reply = "#{project['name']}: http://github.com/#{project['username']}/#{project['name']}"
     end
-    bot.reply "#{m.user.nick}: #{reply}"
+    m.reply "#{m.user.nick}: #{reply}"
   end
 end
 
