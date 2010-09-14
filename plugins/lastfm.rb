@@ -29,7 +29,7 @@ class NowPlayingPlugin
   include NinjaPlugin
 
   match /np (.+)/, method: :np_user
-  match /np/, method: :np
+  match /np$/, method: :np
 
   def usage
     "!np [user] -- display last played song"
