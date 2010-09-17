@@ -13,7 +13,12 @@ module NinjaPlugin
   end
 
   def parse_url(url)
-    xhtml = Nokogiri::HTML(open(url))
+    xhtml = Nokogiri::HTML(open(url)) rescue nil
+    if xhtml.nil? && url !~ /^http/
+      url.insert(0, "http://")
+      xhtml = Nokogiri::HTML(open(url))
+    end
+
     content = ""
     if /https?:\/\/([a-z]*\.)?twitter.com\/(\w+)\/status(es)?\/(\d+)/ =~ url
       xhtml.xpath('//span[@class="entry-content"]').each do |tweet|
