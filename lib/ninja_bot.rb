@@ -1,5 +1,6 @@
 gem 'cinch', '~>1.0'
 require 'cinch'
+require 'chronic'
 
 require 'ago'
 Time.class_eval { alias :ago_in_words :ago}

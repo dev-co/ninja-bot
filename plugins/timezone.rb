@@ -8,8 +8,16 @@ class TimezonePlugin
   match /time\s*(.*)/
 
   def execute(m, zone)
-    Time.zone = zone.strip.capitalize
-    m.reply "#{m.user.nick}: #{Time.zone.now}"
+    Time.zone = zone.strip
+    if !Time.zone
+      Time.zone = zone.strip.capitalize
+    end
+
+    if Time.zone
+      m.reply "#{m.user.nick}: #{Time.zone.now}"
+    else
+      m.reply "#{m.user.nick}: #{Time.now}"
+    end
   end
 end
 

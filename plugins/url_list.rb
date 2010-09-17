@@ -7,6 +7,8 @@ class UrlListPlugin
   end
 
   def execute(m, query)
+    localize!
+
     nick, date = query.downcase.split(/\s+/, 2)
     date ||= "today"
     puts "#{nick} -- #{date}"

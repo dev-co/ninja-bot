@@ -66,14 +66,16 @@ class User
   end
 
   def urls_for(day)
-    date = case day.to_s.strip
-    when "today"
-      Date.today
-    when "yesterday"
-      Date.yesterday
-    else
-      Date.parse(day) rescue nil
+    if day == "all"
+      urls = Set.new
+      UrlList.find_each(:user_id => self.id) do |url|
+        urls += url.urls
+      end
+
+      return urls.to_a
     end
+
+    date = Chronic.parse(day.to_s.strip).in_time_zone.to_date rescue nil
 
     if date && (url_list = self.url_lists.find_by_day(date.iso8601))
       url_list.urls

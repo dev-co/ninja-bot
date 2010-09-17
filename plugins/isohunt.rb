@@ -14,6 +14,8 @@ class IsoHuntPlugin
 
     count = 0
     pattern = query.split(" ").map { |e| /#{Regexp.escape(e)}/i }
+    return if items["items"].blank? || items["items"]["list"].blank?
+
     items["items"]["list"].each do |item|
       title = item["title"].gsub(/<\/?[^>]*>/, "")
       next unless pattern.find {|p| title.match(p).nil? }.nil?

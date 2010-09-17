@@ -1,5 +1,6 @@
 class UrlList
   include MongoMapper::Document
+  timestamps!
 
   key :_id, String
 
