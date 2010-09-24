@@ -27,6 +27,8 @@ class QuotePlugin
   end
 
   def execute(m, query)
+    @bot.localize!
+
     nick, type = query.split(" ", 2)
 
     if chan = m.channel

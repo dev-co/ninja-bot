@@ -20,6 +20,7 @@ class Message
   end
 
   def to_s
-    "[#{self.created_at}] <#{self.user.nick}> #{self.text}"
+    date = Time.zone ? self.created_at.in_time_zone : self.created_at
+    "[#{date}] <#{self.user.nick}> #{self.text}"
   end
 end
