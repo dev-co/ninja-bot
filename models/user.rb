@@ -27,7 +27,7 @@ class User
 
   validates_uniqueness_of :nick, :scope => [:channel_id]
 
-  def add_message(text)
+  def add_message(text, type = nil)
     self.increment({:messages_count => 1})
 
     return if text.split(" ").size < 2
@@ -40,17 +40,16 @@ class User
       end
     end
 
-    type = nil
-    if text =~ /^\!/
-      type = "command"
+    type ||= if text =~ /^\!/
+      "command"
     elsif text =~ /\?/
-      type = "question"
-    elsif text =~ /\:\)/
-      type = "happy"
+      "question"
+    elsif text =~ /(\:\)|xD|\:\-\)|\(\:)/
+      "happy"
     elsif text =~ /\:\(/
-      type = "sad"
-    elsif text =~ /\b(fuck|mofo|put(a|o)|mierda|shit|malpar|hijue)/
-      type = "badword"
+      "sad"
+    elsif text =~ /\b(fuck|mofo|put(a|o)|mierda|shit|malpar|hijueput|gono)/
+      "badword"
     end
 
     if type

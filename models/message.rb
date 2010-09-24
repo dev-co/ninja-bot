@@ -18,4 +18,8 @@ class Message
     conditions[:sort] = "random asc"
     self.first(conditions.merge({:random.gte => r})) || self.first(conditions.merge({:random.lte => r}))
   end
+
+  def to_s
+    "[#{self.created_at}] <#{self.user.nick}> #{self.text}"
+  end
 end

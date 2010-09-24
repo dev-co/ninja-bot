@@ -35,6 +35,10 @@ class NinjaBot < Cinch::Bot
     end
   end
 
+  def history
+    @history ||= {}
+  end
+
   def self.database=(config)
     connection = Mongo::Connection.new(config[:host], config[:port])
 

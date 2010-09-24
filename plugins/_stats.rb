@@ -3,11 +3,9 @@ on :message, /.+/ do |message|
   channel = message.channel
   irc_user = message.user
 
-  @history ||= {}
-
   if channel && irc_user
-    @history[channel.name] ||= FixedQueue.new(20)
-    @history[channel.name].add("[#{Time.zone.now}] <#{irc_user}> #{message.message}")
+    @bot.history[channel.name] ||= FixedQueue.new(20)
+    @bot.history[channel.name].add({:date => Time.zone.now, :text => message.message, :nick => irc_user.nick})
 
     user = Channel.get_user(channel.name, irc_user.nick)
     case message.events
