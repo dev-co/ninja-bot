@@ -1,8 +1,14 @@
 on :message, /.+/ do |message|
+  @bot.localize!
   channel = message.channel
   irc_user = message.user
 
+  @history ||= {}
+
   if channel && irc_user
+    @history[channel.name] ||= FixedQueue.new(20)
+    @history[channel.name].add("[#{Time.zone.now}] <#{irc_user}> #{message.message}")
+
     user = Channel.get_user(channel.name, irc_user.nick)
     case message.events
     when [:channel, :message]
