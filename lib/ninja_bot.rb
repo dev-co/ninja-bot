@@ -15,6 +15,7 @@ require 'open-uri'
 require 'mechanize'
 require 'json'
 
+require 'fixed_queue'
 require 'ninja_plugin'
 require 'core_ext'
 
@@ -83,7 +84,7 @@ class NinjaBot < Cinch::Bot
 
   def load_plugins
     puts "*"*80
-    Dir[File.dirname(__FILE__)+"/../plugins/*.rb"].each do |file|
+    Dir[File.dirname(__FILE__)+"/../plugins/*.rb"].sort.each do |file|
       puts ">> Loading #{file}..."
       begin
         eval File.read(file), binding, file
