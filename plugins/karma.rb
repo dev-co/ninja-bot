@@ -55,7 +55,7 @@ class KarmaPlugin
           target.add_fan(source.nick)
           source.given_points_up!
           irc_user.send("Your karma has been increased by #{rnick}. currently you have [#{target.karma_up+1} - #{target.karma_down} == #{target.karma+1}] points of karma.")
-          m.user.send("You have given 1 point of karma to #{irc_user.nick}. you have given #{source.given_points_today} points today")
+          #m.user.send("You have given 1 point of karma to #{irc_user.nick}. you have given #{source.given_points_today} points today")
         elsif oper == "--" && source.can_decrease_karma?
           target.karma_down!
           source.given_points_up!
