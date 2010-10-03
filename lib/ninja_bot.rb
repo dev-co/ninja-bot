@@ -33,6 +33,12 @@ class NinjaBot < Cinch::Bot
       puts ">> Reconnecting..."
       @bot.start(false)
     end
+
+    on(:nick) do |m|
+      Cinch::Channel.all.each do |channel|
+        channel.sync_modes
+      end
+    end
   end
 
   def history
