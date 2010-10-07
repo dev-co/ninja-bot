@@ -28,9 +28,7 @@ class IdeonePugin
 
       paste_id = Ideone.submit( lang_id, code )
       result = Ideone.run( paste_id, nil )
-puts "*" * 20
-p result
-p result.strip
+
       bot.reply "#{bot.user.nick}: " + CGI.unescapeHTML( result.strip.gsub( /\n/, ", " ).gsub( /[\s]{2,}/, " " ) )
     rescue Ideone::IdeoneError => e
       bot.reply "#{bot.user.nick}: " + e
