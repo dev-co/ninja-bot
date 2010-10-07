@@ -1,4 +1,5 @@
 require "ideone"
+require "cgi"
 
 class IdeonePugin
   include NinjaPlugin
@@ -16,7 +17,7 @@ class IdeonePugin
 
       if lang_id == nil
         bot.reply "#{bot.user.nick}: language not found"
-        raise ArgumentError, "language not found"
+        return
       end
 
       code = code.strip.chomp
@@ -27,8 +28,10 @@ class IdeonePugin
 
       paste_id = Ideone.submit( lang_id, code )
       result = Ideone.run( paste_id, nil )
-
-      bot.reply "#{bot.user.nick}: " + result.chomp!.gsub( /\n/, ", " ).gsub( /[\s]{2,}/, " " )
+puts "*" * 20
+p result
+p result.strip
+      bot.reply "#{bot.user.nick}: " + CGI.unescapeHTML( result.strip.gsub( /\n/, ", " ).gsub( /[\s]{2,}/, " " ) )
     rescue Ideone::IdeoneError => e
       bot.reply "#{bot.user.nick}: " + e
     rescue Exception => e
