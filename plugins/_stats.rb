@@ -4,7 +4,7 @@ on :message, /.+/ do |message|
   irc_user = message.user
 
   if channel && irc_user
-    @bot.history[channel.name] ||= FixedQueue.new(20)
+    @bot.history[channel.name] ||= FixedQueue.new(50)
     @bot.history[channel.name].add({:date => Time.zone.now, :text => message.message, :nick => irc_user.nick})
 
     user = Channel.get_user(channel.name, irc_user.nick)
