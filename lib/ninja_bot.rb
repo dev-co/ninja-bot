@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'bundler/setup'
+
 gem 'cinch', '~>1.0'
 require 'cinch'
 require 'chronic'
