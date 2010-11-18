@@ -1,5 +1,5 @@
 source "http://rubygems.org"
-gem 'cinch', '~>1.0'
+gem 'cinch', :git => "https://github.com/injekt/cinch.git", :branch => "develop"
 gem 'chronic'
 gem 'ago'
 gem 'mongo_mapper', '~>0.8'

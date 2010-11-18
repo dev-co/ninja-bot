@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/injekt/cinch.git
+  revision: 46cc3fedee1395ed8ce3247dba33e22d668e5f27
+  branch: develop
+  specs:
+    cinch (1.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -5,13 +12,13 @@ GEM
     ago (0.1.5)
     bson (1.1.1)
     chronic (0.3.0)
-    cinch (1.0.2)
     crack (0.1.8)
     gemcutter (0.6.1)
     git (1.2.5)
     hpricot (0.8.2)
     httparty (0.6.1)
       crack (= 0.1.8)
+    i18n (0.4.2)
     ideone (0.8.3)
     imdb (0.6.5)
       hpricot (>= 0.8.1)
@@ -38,6 +45,7 @@ GEM
     rubyforge (2.0.4)
       json_pure (>= 1.1.7)
     shoulda (2.11.3)
+    tzinfo (0.3.23)
 
 PLATFORMS
   ruby
@@ -45,8 +53,9 @@ PLATFORMS
 DEPENDENCIES
   ago
   chronic
-  cinch (~> 1.0)
+  cinch!
   httparty
+  i18n
   ideone
   imdb
   jeweler
@@ -55,3 +64,4 @@ DEPENDENCIES
   nokogiri
   rae
   shoulda
+  tzinfo
