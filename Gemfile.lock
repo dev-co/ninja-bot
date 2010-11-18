@@ -1,0 +1,57 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activesupport (3.0.1)
+    ago (0.1.5)
+    bson (1.1.1)
+    chronic (0.3.0)
+    cinch (1.0.2)
+    crack (0.1.8)
+    gemcutter (0.6.1)
+    git (1.2.5)
+    hpricot (0.8.2)
+    httparty (0.6.1)
+      crack (= 0.1.8)
+    ideone (0.8.3)
+    imdb (0.6.5)
+      hpricot (>= 0.8.1)
+    jeweler (1.4.0)
+      gemcutter (>= 0.1.0)
+      git (>= 1.2.5)
+      rubyforge (>= 2.0.0)
+    jnunemaker-validatable (1.8.4)
+      activesupport (>= 2.3.4)
+    json_pure (1.4.6)
+    mechanize (1.0.0)
+      nokogiri (>= 1.2.1)
+    mongo (1.1.1)
+      bson (>= 1.1.1)
+    mongo_mapper (0.8.6)
+      activesupport (>= 2.3.4)
+      jnunemaker-validatable (~> 1.8.4)
+      plucky (~> 0.3.6)
+    nokogiri (1.4.3.1)
+    plucky (0.3.6)
+      mongo (~> 1.1)
+    rae (1.5.0)
+      mechanize (>= 1.0.0)
+    rubyforge (2.0.4)
+      json_pure (>= 1.1.7)
+    shoulda (2.11.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ago
+  chronic
+  cinch (~> 1.0)
+  httparty
+  ideone
+  imdb
+  jeweler
+  mechanize
+  mongo_mapper (~> 0.8)
+  nokogiri
+  rae
+  shoulda
