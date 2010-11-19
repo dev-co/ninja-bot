@@ -1,4 +1,4 @@
-on :message, /.+/ do |message|
+on :message do |message|
   @bot.localize!
   channel = message.channel
   irc_user = message.user
@@ -9,12 +9,12 @@ on :message, /.+/ do |message|
 
     user = Channel.get_user(channel.name, irc_user.nick)
     case message.events
-    when [:channel, :message]
+    when [:catchall, :channel, :message]
       user.add_message(message.message)
-    when [:private, :message]
+    when [:catchall, :private, :message]
       user.add_message(message.message)
-    when [:ctcp, :private, :message]
-    when [:ctcp, :channel, :message]
+    when [:catchall, :ctcp, :private, :message]
+    when [:catchall, :ctcp, :channel, :message]
     end
   end
 end
