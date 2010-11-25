@@ -19,7 +19,7 @@ class AlarmPlugin
     localize!
 
     if @alarms[m.user.nick]
-      @alarms[m.user.nick].wakeup
+      @alarms[m.user.nick].wakeup rescue nil
     end
 
     date = Time.zone.parse(date)
@@ -34,6 +34,7 @@ class AlarmPlugin
     sleep delay
 
     m.reply "#{m.user.nick}: [#{date}] riiiing <#{message}>"
+    @alarms[m.user.nick] = nil
   end
 end
 
