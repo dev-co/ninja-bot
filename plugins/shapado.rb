@@ -34,7 +34,7 @@ class ShapadoPlugin
   def execute(m, query)
     if m.channel
       config = @bot.channel_list[m.channel.name]
-      data = JSON.parse(open("#{config["shapado_site"]}/search.json?q=rvm").read)
+      data = JSON.parse(open("#{config["shapado_site"]}/search.json?q=#{CGI.escape(query)}").read)
       buffer = ""
       data[0,6].each do |q|
         buffer << "#{config["shapado_site"]}/questions/#{q["slug"]} -- "
