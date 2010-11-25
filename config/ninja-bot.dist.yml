@@ -11,9 +11,11 @@ network:
   :nick: "NinjaBot"
   :max_messages: 1
   :channels:
-     - "#cinch-bots"
+  - name: "#cinch-bots"
+    timezone: EST
+    shapado_site: http://shapado.com
   :port: 6667
-  :realname: "http:://github.com/dev_co/ninja-bot"
+  :realname: "http://github.com/dev_co/ninja-bot"
   :verbose: true
   :version: "NinjaBot v3.0"
 

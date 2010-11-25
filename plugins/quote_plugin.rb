@@ -12,7 +12,6 @@ class QuotePlugin
     if chan = m.channel
       history = @bot.history[chan.name] || []
 
-      puts history.inspect
       history.reverse_each do |message|
         next if message[:text] =~ /\!/
 

@@ -5,7 +5,7 @@ on :message do |message|
 
   if channel && irc_user
     @bot.history[channel.name] ||= FixedQueue.new(50)
-    @bot.history[channel.name].add({:date => Time.zone.now, :text => message.message, :nick => irc_user.nick})
+    @bot.history[channel.name].add({:date => Time.zone.now, :text => message.message.force_encoding("utf-8"), :nick => irc_user.nick})
 
     user = Channel.get_user(channel.name, irc_user.nick)
     case message.events

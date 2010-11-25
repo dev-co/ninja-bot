@@ -23,8 +23,16 @@ require 'ninja_plugin'
 require 'core_ext'
 
 class NinjaBot < Cinch::Bot
+  attr_reader :channel_list
+
   def initialize(config)
     super()
+
+    @channel_list = {}
+    config.delete(:channels).each do |c|
+      @channel_list[c.delete("name")] = c
+    end
+    self.config.channels = @channel_list.keys
 
     config.each do |k, v|
       self.config.send("#{k}=", v)

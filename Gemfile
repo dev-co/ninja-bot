@@ -13,3 +13,6 @@ gem 'shoulda'
 gem 'jeweler'
 gem 'i18n'
 gem 'tzinfo'
+
+gem 'loofah', :git => 'http://github.com/phaza/loofah.git', :branch => "rails3"
+gem 'feedzirra', '0.0.24'

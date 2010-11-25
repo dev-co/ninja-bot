@@ -5,8 +5,8 @@ class Channel
   has_many :users
 
   def self.get_user(name, nick, create = true)
-    name.downcase!
-    nick.downcase!
+    name = name.downcase
+    nick = nick.downcase
 
     channel = Channel.find(name)
     channel = Channel.create(:_id => name) if channel.nil?
