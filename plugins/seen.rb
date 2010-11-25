@@ -10,8 +10,6 @@ class SeenPlugin
   def execute(m, nick)
     return if m.channel.nil?
 
-    m.channel.sync_modes
-
     rnick = m.user.nick
 
     if rnick.downcase == nick.downcase
