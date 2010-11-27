@@ -12,6 +12,7 @@ class TimezonePlugin
     if !Time.zone
       Time.zone = zone.strip.capitalize
     end
+    localize! if !Time.zone
 
     if Time.zone
       m.reply "#{m.user.nick}: #{Time.zone.now}"

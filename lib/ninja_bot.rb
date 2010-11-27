@@ -22,6 +22,8 @@ require 'fixed_queue'
 require 'ninja_plugin'
 require 'core_ext'
 
+Encoding.default_external = "UTF-8"
+
 class NinjaBot < Cinch::Bot
   attr_reader :channel_list
 

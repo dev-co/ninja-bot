@@ -29,7 +29,7 @@ class ParseUrlPlugin
         m.reply "View pdf online at #{shorten_url("http://docs.google.com/viewer?url="+url)}"
       end
 
-      if chan = m.channel && m.user
+      if (chan = m.channel) && m.user
         user = Channel.get_user(chan.name, m.user.nick)
         user.add_url(url, content)
       end
