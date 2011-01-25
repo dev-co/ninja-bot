@@ -13,7 +13,7 @@ class QuotePlugin
       history = @bot.history[chan.name] || []
 
       history.reverse_each do |message|
-        next if message[:text] =~ /\!/
+        next if message[:text] =~ /^\!(\S+)/
 
         if message[:text] =~ /#{Regexp.escape(pattern)}/ || message[:nick] =~ /#{Regexp.escape(pattern)}/
           user = Channel.get_user(chan.name, message[:nick])
