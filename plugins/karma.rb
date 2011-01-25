@@ -7,6 +7,7 @@ class KarmaPlugin
 
   match /karma (.+)/, :method => :stats
   match /fans (.+)/, :method => :fans
+  match /top/, :method => :top
   match /\b(\S+)\s*(\+\+|\-\-|\+1|lol|thanks|thx|gracias)(\s|$)/, :use_prefix => false
 
   def stats(m, nick)
@@ -22,6 +23,19 @@ class KarmaPlugin
       else
         m.reply "#{m.user.nick}: #{target.fans.join(", ")} are fans of #{nick}"
       end
+    end
+  end
+
+  def top(m)
+    if m.channel
+      channel = Channel.find(m.channel.name.downcase)
+      buffer = ""
+      count = 0
+      channel.users.all(:limit => 10, :order => "karma_up desc").each do |user|
+        buffer << "#{count+=1}. #{user.nick} [#{user.karma_up}] | "
+      end
+
+      m.reply buffer
     end
   end
 
