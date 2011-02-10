@@ -10,6 +10,8 @@ class SeenPlugin
   def execute(m, nick)
     return if m.channel.nil?
 
+    localize!
+
     rnick = m.user.nick
 
     if rnick.downcase == nick.downcase
