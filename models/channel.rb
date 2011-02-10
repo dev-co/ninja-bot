@@ -3,6 +3,7 @@ class Channel
 
   key :_id, String
   has_many :users
+  has_many :logs
 
   def self.get_user(name, nick, create = true)
     name = name.downcase
@@ -16,4 +17,17 @@ class Channel
 
     user
   end
+
+  def self.add_log_message(name, message)
+    channel = Channel.find(name)
+
+    log = Log.first(:channel_id => channel.id, :order => "created_at desc", :select => %w[messages_count channel_id])
+    if log.nil? || log.messages_count >= 100
+      log = Log.create(:channel_id => channel.id)
+    end
+
+    Log.push({:_id => log.id}, {:messages => message})
+    Log.increment({:_id => log.id},{:messages_count => 1})
+  end
 end
+
