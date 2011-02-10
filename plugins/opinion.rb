@@ -139,7 +139,7 @@ class TwitterPlugin
     if results
       twit = results.choice
       if twit
-        source = shorten_url("http://twitter.com/#{twit["from_user"]}")
+        source = "http://twitter.com/#{twit["from_user"]}"
         text = twit["text"]
         t =Time.zone.parse(twit["created_at"])
         m.reply "#{m.user.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago_in_words})"
