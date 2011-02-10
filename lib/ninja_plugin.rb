@@ -1,6 +1,9 @@
 module NinjaPlugin
   def self.included(base)
-    base.send(:include, Cinch::Plugin)
+    base.class_eval do
+      include Cinch::Plugin
+      hook :pre, :method => :localize!
+    end
     NinjaBot.known_plugins << base
   end
 
@@ -37,7 +40,7 @@ module NinjaPlugin
     content
   end
 
-  def localize!
+  def localize!(m = nil)
     NinjaBot.localize!
   end
 end
