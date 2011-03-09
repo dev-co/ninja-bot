@@ -10,6 +10,8 @@ class User
   key :last_seen_at, Time
   key :last_quit_message, String
 
+  key :lastfm_user, String
+
   key :given_points, Hash
   key :karma_up, Integer, :default => 0
   key :karma_down, Integer, :default => 0

@@ -41,11 +41,6 @@ class NinjaBot < Cinch::Bot
     end
 
     load_plugins
-
-    on(:disconnect) do |m|
-      puts ">> Reconnecting..."
-      @bot.start(false)
-    end
   end
 
   def history
@@ -53,7 +48,7 @@ class NinjaBot < Cinch::Bot
   end
 
   def self.database=(config)
-    connection = Mongo::Connection.new(config[:host], config[:port])
+    connection = Mongo::Connection.new(config[:host], config[:port], :pool_size => 10)
 
     MongoMapper.connection = connection
     MongoMapper.database = config[:name]
