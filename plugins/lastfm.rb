@@ -30,6 +30,7 @@ class NowPlayingPlugin
 
   match /np (.+)/, method: :np_user
   match /np$/, method: :np
+  match /np_alias (\S+)/, method: :np_alias
 
   def usage
     "!np [user] -- display last played song"
@@ -47,14 +48,22 @@ class NowPlayingPlugin
   end
 
   def np(m)
+    user = Channel.get_user(m.channel.name, m.user.nick)
+
     begin
-      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(m.user.nick)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
+      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(user.lastfm_user||user.nick)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
       last_song = result["recenttracks"]["track"][0]
       reply = "#{last_song['name']} by #{last_song['artist']['#text']}"
     rescue
       reply = "The user #{m.user.nick} doesn't have a Last.fm account"
     end
     m.reply "#{m.user.nick}: #{reply}"
+  end
+  
+  def np_alias(m, query)
+    user = Channel.get_user(m.channel.name, m.user.nick)
+    user.set({:lastfm_user =>  query})
+    m.reply "#{m.user.nick}: last.fm user updated to #{query.inspect}"
   end
 end
 
