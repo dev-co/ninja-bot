@@ -12,7 +12,7 @@ module NinjaPlugin
   end
 
   def shorten_url(url)
-    open("http://bit.ly/api?url=#{url}").read rescue url
+    Googl.shorten(url).short_url rescue url
   end
 
   def parse_url(url)

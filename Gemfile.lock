@@ -31,6 +31,9 @@ GEM
       nokogiri (> 0.0.0)
       sax-machine (>= 0.0.12)
     git (1.2.5)
+    googl (0.4.2)
+      httparty (>= 0.6.1)
+      json (>= 1.4.6)
     hpricot (0.8.3)
     httparty (0.7.4)
       crack (= 0.1.8)
@@ -44,6 +47,7 @@ GEM
       rake
     jnunemaker-validatable (1.8.4)
       activesupport (>= 2.3.4)
+    json (1.5.1)
     mechanize (1.0.0)
       nokogiri (>= 1.2.1)
     mongo (1.2.2)
@@ -71,6 +75,7 @@ DEPENDENCIES
   chronic
   cinch!
   feedzirra (= 0.0.24)
+  googl
   httparty
   i18n
   ideone

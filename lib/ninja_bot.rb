@@ -17,6 +17,7 @@ require 'timeout'
 require 'open-uri'
 require 'mechanize'
 require 'json'
+require 'googl'
 
 require 'fixed_queue'
 require 'ninja_plugin'
