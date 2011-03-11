@@ -11,8 +11,11 @@ class GroovesharkPlugin
 
   def execute( bot, query )
     query = CGI.escape( query )
+    api_key =  @bot.channel_list[bot.channel.name]["grooveshark"]
+
     # Retrieve songs (top 5) based on user query.
-    songs = JSON.parse( open( "http://tinysong.com/s/#{ query }?format=json&limit=5" ).read )
+    songs = JSON.parse( open( "http://tinysong.com/s/#{ query }?format=json&limit=5&key=#{ api_key }" ).read )
+    puts "http://tinysong.com/s/#{ query }?format=json&limit=5&key=#{ api_key }"
 
     if songs.empty?
       bot.reply "#{bot.user.nick}: artist not found, sorry :("

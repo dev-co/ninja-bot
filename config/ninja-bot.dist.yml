@@ -14,6 +14,7 @@ network:
   - name: "#cinch-bots"
     timezone: EST
     shapado_site: http://shapado.com
+    grooveshark: PutYourTinysongApiKeyHere
   :port: 6667
   :realname: "http://github.com/dev_co/ninja-bot"
   :verbose: true
