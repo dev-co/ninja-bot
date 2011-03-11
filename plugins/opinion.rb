@@ -141,7 +141,7 @@ class TwitterPlugin
       if twit
         source = "http://twitter.com/#{twit["from_user"]}"
         text = twit["text"]
-        t =Time.zone.parse(twit["created_at"])
+        t =Time.parse(twit["created_at"])
         m.reply "#{m.user.nick}: #{CGI.unescapeHTML(text)} (via #{source} #{t.ago_in_words})"
       end
     end
