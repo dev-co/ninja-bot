@@ -6,7 +6,13 @@ class ParseUrlPlugin
   def usage
   end
 
+  def recent_urls
+    @recent_urls ||= {}
+  end
+
   def find_urls(m)
+    synchronize(:find_urls) do
+    self.recent_urls[m.channel.name] ||= FixedQueue.new(10)
 
     # newtwitter's url fix
     message = m.message.to_s.gsub(/twitter.com\/#!\//, "twitter.com/")
@@ -15,6 +21,7 @@ class ParseUrlPlugin
       url = $1.to_s.strip
 
       puts "received url #{url}"
+
       content = nil
       begin
         content = parse_url(url)
@@ -23,8 +30,16 @@ class ParseUrlPlugin
         return
       end
 
+      short_url = shorten_url(url)
+      if recent_urls[m.channel.name].include?(short_url) || recent_urls[m.channel.name].include?(url)
+        return
+      end
+
+      recent_urls[m.channel.name].add(short_url)
+      recent_urls[m.channel.name].add(url)
+
       if content.present?
-        m.reply "#{content} -- #{shorten_url(url)}"
+        m.reply "#{content} -- #{short_url}"
       elsif url =~ /\.pdf$/
         m.reply "View pdf online at #{shorten_url("http://docs.google.com/viewer?url="+url)}"
       end
@@ -33,6 +48,7 @@ class ParseUrlPlugin
         user = Channel.get_user(chan.name, m.user.nick)
         user.add_url(url, content)
       end
+    end
     end
   end
 end

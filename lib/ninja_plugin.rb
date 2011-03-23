@@ -12,7 +12,11 @@ module NinjaPlugin
   end
 
   def shorten_url(url)
-    Googl.shorten(url).short_url rescue url
+    begin
+      Googl.shorten(url).short_url
+    rescue Exception
+      return url
+    end
   end
 
   def parse_url(url)

@@ -51,7 +51,7 @@ on :message do |m|
       irc_user = m.user
 
       if channel && irc_user && (question = @current_question[channel.name])
-        if m.events == [:channel, :message]
+        if m.events == [:catchall, :channel, :message]
           if question.answer =~ /^#{Regexp.escape(m.message)}$/i
             @current_question[channel.name] = nil
             @tries[channel.name] = 0
