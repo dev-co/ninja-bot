@@ -3,6 +3,7 @@ require 'bundler/setup'
 
 gem 'cinch', '~>1.0'
 require 'cinch'
+require 'cinch/plugins/identify'
 require 'chronic'
 
 require 'ago'
@@ -42,6 +43,18 @@ class NinjaBot < Cinch::Bot
     end
 
     load_plugins
+
+    if config.keys.include? :password
+      self.configure do |config|
+        config.plugins.plugins.push Cinch::Plugins::Identify
+        config.plugins.options[ Cinch::Plugins::Identify ] = {
+          :username => config.nick,
+          :password => config.passsword,
+          :type     => :nickserv
+        }
+      end
+    end
+
   end
 
   def history
@@ -106,6 +119,7 @@ class NinjaBot < Cinch::Bot
         sleep 3
       end
     end
+
     puts "*"*80
   end
 end

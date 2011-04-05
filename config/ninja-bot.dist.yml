@@ -9,6 +9,7 @@ database:
 network:
   :server: irc.freenode.net
   :nick: "NinjaBot"
+  :password: "p4ssw0rd"
   :max_messages: 1
   :channels:
   - name: "#cinch-bots"
