@@ -27,6 +27,7 @@ GEM
     activesupport (3.0.4)
     ago (0.1.5)
     bson (1.2.2)
+    bson_ext (1.2.2)
     builder (3.0.0)
     chronic (0.3.0)
     crack (0.1.8)
@@ -80,6 +81,7 @@ PLATFORMS
 
 DEPENDENCIES
   ago
+  bson_ext (= 1.2.2)
   chronic
   cinch!
   cinch-identify!
@@ -92,7 +94,7 @@ DEPENDENCIES
   jeweler
   loofah!
   mechanize
-  mongo (~> 1.2.1)
+  mongo (= 1.2.2)
   mongo_mapper (~> 0.8)
   nokogiri
   rae
