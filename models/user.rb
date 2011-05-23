@@ -11,6 +11,7 @@ class User
   key :last_quit_message, String
 
   key :lastfm_user, String
+  key :coderwall_user, String
 
   key :given_points, Hash
   key :karma_up, Integer, :default => 0
