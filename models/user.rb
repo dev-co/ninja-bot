@@ -12,7 +12,9 @@ class User
   field :last_seen_at, :type => Time
   field :last_quit_message, :type => String
 
+
   field :lastfm_user, :type => String
+  field :coderwall_user, :type => String
 
   field :given_points, :type => Hash
   field :karma_up, :type => Integer, :default => 0
