@@ -1,24 +1,9 @@
 require 'rubygems'
 require 'bundler/setup'
 
-gem 'cinch', '~>1.0'
-require 'cinch'
-require 'cinch/plugins/identify'
-require 'chronic'
+Bundler.require
 
-require 'ago'
 Time.class_eval { alias :ago_in_words :ago}
-
-gem 'mongo_mapper', '~>0.8'
-require 'mongo_mapper'
-
-require 'nokogiri'
-require 'httparty'
-require 'timeout'
-require 'open-uri'
-require 'mechanize'
-require 'json'
-require 'googl'
 
 require 'fixed_queue'
 require 'ninja_plugin'
@@ -62,11 +47,9 @@ class NinjaBot < Cinch::Bot
   end
 
   def self.database=(config)
-    connection = Mongo::Connection.new(config[:host], config[:port], :pool_size => 10)
-
-    MongoMapper.connection = connection
-    MongoMapper.database = config[:name]
-    MongoMapper.database.authenticate(config[:user], config[:password]) if config[:user] && config[:password]
+    config[:database] = config.delete(:name)
+    Mongoid.config.from_hash(config.stringify_keys)
+    Mongoid.config.raise_not_found_error = false
   end
 
   def self.known_plugins

@@ -1,12 +1,12 @@
 class UrlList
-  include MongoMapper::Document
-  timestamps!
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  key :_id, String
+  identity :type => String
 
-  key :user_id, String
+  field :user_id, :type => String
   belongs_to :user
 
-  key :day, String, :required => true, :index => true
-  key :urls, Array
+  field :day, :type => String, :required => true, :index => true
+  field :urls, :type => Array, :default => []
 end

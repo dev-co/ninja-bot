@@ -1,14 +1,12 @@
 class PluginExt
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  timestamps!
+  identity :type => String
 
-  key :_id, String
-  key :_type, String
-
-  key :name, String
-  key :body, String
-  key :argc, Integer, :default => 0
+  field :name, :type => String
+  field :body, :type => String
+  field :argc, :type => Integer, :default => 0
 
   key :channel_id, String
 

@@ -59,10 +59,10 @@ class NowPlayingPlugin
     end
     m.reply "#{m.user.nick}: #{reply}"
   end
-  
+
   def np_alias(m, query)
     user = Channel.get_user(m.channel.name, m.user.nick)
-    user.set({:lastfm_user =>  query})
+    user.override({:lastfm_user =>  query})
     m.reply "#{m.user.nick}: last.fm user updated to #{query.inspect}"
   end
 end

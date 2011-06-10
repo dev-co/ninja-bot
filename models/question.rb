@@ -1,19 +1,18 @@
 class Question
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include MongoidExt::Random
 
-  key :_id, String
-  key :language, String
-  key :category, String
-  key :text, String, :unique => true
-  key :answer, String
+  identity :type => String
+  field :language, :type => String
+  field :category, :type => String
+  field :text, :type => String, :unique => true
+  field :answer, :type => String
 
-  key :asked_times, Integer, :default => 0
-  key :random, Float, :default => lambda {rand()}, :index => true
-  
+  field :asked_times, :type => Integer, :default => 0
+
   def self.random_question(conditions = {})
-    r = rand()
-    conditions[:sort] = "asked_times asc, random asc"
-    Question.first(conditions.merge(:random.gte => r)) || Question.first(conditions.merge(:random.lte => r))
+    self.random
   end
 end
 

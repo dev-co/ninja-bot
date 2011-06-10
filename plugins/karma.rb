@@ -31,7 +31,7 @@ class KarmaPlugin
       channel = Channel.find(m.channel.name.downcase)
       buffer = ""
       count = 0
-      channel.users.all(:limit => 10, :order => "karma_up desc").each do |user|
+      channel.users.limit(10).order(:karma_up.desc).each do |user|
         buffer << "#{count+=1}. #{user.nick} [#{user.karma_up}] | "
       end
 

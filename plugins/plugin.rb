@@ -13,7 +13,7 @@ class PluginPlugin
   end
 
   def store_plugin(m, name, argc, body)
-    if plugin = PluginExt.first(:name=> name, :channel_id => m.channel.name)
+    if plugin = PluginExt.where(:name=> name, :channel_id => m.channel.name)
       plugin.argc = argc
       plugin.body = body
       plugin.save
@@ -30,9 +30,9 @@ class PluginPlugin
       name = $1
       argv = $2.to_s.split(" ")
 
-      plugin = PluginExt.first(:name=> name, :channel_id => m.channel.name)
+      plugin = PluginExt.where(:name=> name, :channel_id => m.channel.name)
       if plugin.nil?
-        plugin = PluginExt.first(:name=> name)
+        plugin = PluginExt.where(:name=> name)
       end
 
       if plugin.present?

@@ -1,27 +1,29 @@
 class User
-  include MongoMapper::Document
+  include Mongoid::Document
+  include MongoidExt::Random
+  include Mongoid::Timestamps
 
-  key :_id, String
+  identity :type => String
 
-  key :channel_id, String, :required => true
+  field :channel_id, :type => String, :required => true
   belongs_to :channel
 
-  key :nick, String, :required => true
-  key :last_seen_at, Time
-  key :last_quit_message, String
+  field :nick, :type => String, :required => true
+  field :last_seen_at, :type => Time
+  field :last_quit_message, :type => String
 
-  key :lastfm_user, String
+  field :lastfm_user, :type => String
 
-  key :given_points, Hash
-  key :karma_up, Integer, :default => 0
-  key :karma_down, Integer, :default => 0
+  field :given_points, :type => Hash
+  field :karma_up, :type => Integer, :default => 0
+  field :karma_down, :type => Integer, :default => 0
 
-  key :messages_count, Integer, :default => 0
-  key :question_messages_count, Integer, :default => 0
-  key :badword_messages_count, Integer, :default => 0
-  key :command_messages_count, Integer, :default => 0
+  field :messages_count, :type => Integer, :default => 0
+  field :question_messages_count, :type => Integer, :default => 0
+  field :badword_messages_count, :type => Integer, :default => 0
+  field :command_messages_count, :type => Integer, :default => 0
 
-  key :fans, Array
+  field :fans, :type => Array, :default => []
 
   has_many :messages, :class_name => "Message"
   has_many :normal_messages, :type => "normal", :class_name => "Message"
@@ -36,9 +38,9 @@ class User
 
     if self.karma_down == 0
       if self.messages_count+1 > 10 && self.karma_up < 5
-        self.set({:karma_up => 5})
+        self.override({:karma_up => 5})
       elsif self.messages_count+1 > 100 && self.karma_up < 10
-        self.set({:karma_up => 10})
+        self.override({:karma_up => 10})
       end
     end
 
@@ -62,14 +64,17 @@ class User
 
   def add_url(url, title)
     today = Date.today.iso8601
-    url_list = self.url_lists.find_or_create_by_day(today)
-    url_list.add_to_set(:urls => {:link => url, :title => title})
+    url_list = self.url_lists.where(:day => today).first
+    if !url_list
+      url_list = self.url_lists.create(:day => today)
+    end
+    url_list.push_uniq(:urls => {:link => url, :title => title})
   end
 
   def urls_for(day)
     if day == "all"
       urls = Set.new
-      UrlList.find_each(:user_id => self.id) do |url|
+      UrlList.where(:user_id => self.id).all.each do |url|
         urls += url.urls
       end
 
@@ -78,7 +83,7 @@ class User
 
     date = Chronic.parse(day.to_s.strip).in_time_zone.to_date rescue nil
 
-    if date && (url_list = self.url_lists.find_by_day(date.iso8601))
+    if date && (url_list = self.url_lists.where(:day => date.iso8601).first)
       url_list.urls
     else
       []
@@ -92,8 +97,8 @@ class User
   def given_points_today
     p = self.given_points[Date.today.iso8601]
     if p.nil?
-      self.set({:given_points => {}})
-      self.set({:"given_points.#{Date.today.iso8601}" => 0})
+      self.override({:given_points => {}})
+      self.override({:"given_points.#{Date.today.iso8601}" => 0})
     end
 
     p.to_i

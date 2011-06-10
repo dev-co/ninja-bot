@@ -1,22 +1,18 @@
 class Message
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  include MongoidExt::Random
 
-  timestamps!
-
-  key :_id, String
-  key :user_id, String, :required => true
+  identity :type => String
+  field :user_id, :type => String, :required => true
   belongs_to :user
 
-  key :type, String, :required => true
-  key :text, String
+  field :type, :type => String, :required => true
+  field :text, :type => String
 
-  key :random, Float, :default => lambda { rand() }
 
   def self.random_message(conditions = {})
-    r = rand()
-
-    conditions[:sort] = "random asc"
-    self.first(conditions.merge({:random.gte => r})) || self.first(conditions.merge({:random.lte => r}))
+    self.random
   end
 
   def to_s

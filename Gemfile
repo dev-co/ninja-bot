@@ -1,10 +1,14 @@
 source "http://rubygems.org"
+
 gem 'cinch', :git => "https://github.com/cinchrb/cinch.git", :branch => "master"
-gem 'cinch-identify', :git => 'https://github.com/cinchrb/cinch-identify.git', :branch => 'master'
+gem 'cinch-identify', :git => 'https://github.com/cinchrb/cinch-identify.git', :branch => 'master', :require => 'cinch/plugins/identify'
 gem 'chronic'
 gem 'ago'
-gem 'mongo', '~> 1.2.1'
-gem 'mongo_mapper', '~>0.8'
+
+gem 'mongoid', :git => 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid_ext', :git => "git://github.com/dcu/mongoid_ext.git"
+
+gem 'rack'
 gem 'nokogiri'
 gem 'httparty'
 gem 'mechanize'

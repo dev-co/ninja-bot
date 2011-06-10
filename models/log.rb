@@ -1,16 +1,13 @@
 class Log
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  timestamps!
+  identity :type => String
 
-  key :_id, String
-  key :_type, String
-
-  key :channel_id, String
   belongs_to :channel
 
-  key :messages, Array
-  key :messages_count, Integer, :default => 0
+  field :messages, :type => Array, :default => []
+  field :messages_count, :type => Integer, :default => 0
 
 
   def self.format_message(msg)

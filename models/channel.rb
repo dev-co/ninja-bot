@@ -1,7 +1,8 @@
 class Channel
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
-  key :_id, String
+  identity :type => String
   has_many :users
   has_many :logs
 
@@ -12,7 +13,7 @@ class Channel
     channel = Channel.find(name)
     channel = Channel.create(:_id => name) if channel.nil?
 
-    user = channel.users.first(:nick => nick)
+    user = channel.users.where(:nick => nick).first
     user = channel.users.create(:nick => nick) if user.nil? && create
 
     user
@@ -21,7 +22,7 @@ class Channel
   def self.add_log_message(name, message)
     channel = Channel.find(name)
 
-    log = Log.first(:channel_id => channel.id, :order => "created_at desc", :select => %w[messages_count channel_id])
+    log = Log.where(:channel_id => channel.id, :order => "created_at desc").only(%w[messages_count channel_id]).first
     if log.nil? || log.messages_count >= 100
       log = Log.create(:channel_id => channel.id)
     end
