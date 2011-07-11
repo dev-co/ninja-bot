@@ -1,9 +1,10 @@
 require 'open-uri'
+require 'nokogiri'
 
 class UsdToCopPlugin
   include NinjaPlugin
 
-  match /usd2cop (\d+)/, method: :convert
+  match /usd2cop ([-+]?[0-9]*\.?[0-9]+)/, method: :convert
   match /usd2cop$/, method: :trm
 
   def usage
@@ -12,8 +13,9 @@ class UsdToCopPlugin
 
   def convert(m, query)
     begin
-      cop = open("http://usd2cop.heroku.com").read.to_i
-      reply = cop * query.to_i
+      doc = Nokogiri::HTML(open("http://www.colombia.com/colombiainfo/estadisticas/dolar.asp"))
+      cop = doc.css('.trm').last.children.to_s.gsub(',','').to_f
+      reply = cop * query.to_f
     rescue
       reply = "Error reading exchange rate :|"
     end
