@@ -24,3 +24,5 @@ gem 'googl'
 gem 'loofah', :git => 'http://github.com/phaza/loofah.git', :branch => "rails3"
 gem 'feedzirra', '0.0.24'
 
+gem 'bson_ext'
+gem 'magic'

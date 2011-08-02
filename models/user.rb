@@ -28,7 +28,8 @@ class User
   field :fans, :type => Array, :default => []
 
   has_many :messages, :class_name => "Message"
-  has_many :normal_messages, :type => "normal", :class_name => "Message"
+  #has_many :normal_messages, :type => "normal", :class_name => "Message"
+  has_many :normal_messages, :class_name => "Message"
   has_many :url_lists, :class_name => "UrlList"
 
   validates_uniqueness_of :nick, :scope => [:channel_id]
