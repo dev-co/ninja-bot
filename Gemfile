@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'cinch', :git => "https://github.com/cinchrb/cinch.git", :branch => "master"
+gem 'cinch', '1.1.3'
 gem 'cinch-identify', :git => 'https://github.com/cinchrb/cinch-identify.git', :branch => 'master', :require => 'cinch/plugins/identify'
 gem 'chronic'
 gem 'ago'
