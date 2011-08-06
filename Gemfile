@@ -5,7 +5,7 @@ gem 'cinch-identify', :git => 'https://github.com/cinchrb/cinch-identify.git', :
 gem 'chronic'
 gem 'ago'
 
-gem 'mongoid', :git => 'git://github.com/mongoid/mongoid.git'
+gem 'mongoid', '2.1.5' 
 gem 'mongoid_ext', :git => "git://github.com/dcu/mongoid_ext.git"
 
 gem 'rack'
