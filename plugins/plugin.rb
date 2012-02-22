@@ -13,7 +13,7 @@ class PluginPlugin
   end
 
   def store_plugin(m, name, argc, body)
-    if plugin = PluginExt.where(:name=> name, :channel_id => m.channel.name)
+    if plugin = PluginExt.where(:name=> name, :channel_id => m.channel.name).first
       plugin.argc = argc
       plugin.body = body
       plugin.save
