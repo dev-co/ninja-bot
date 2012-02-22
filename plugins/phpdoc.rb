@@ -30,7 +30,7 @@ class PhpDocPlugin
       end
 
       if ver != nil && desc != nil && syn != nil
-        bot.reply "#{bot.user.nick}: #{ver} - #{desc}"
+        bot.reply "#{bot.user.nick}: #{ver} - #{desc} - #{shorten_url( uri )}"
         bot.reply "#{bot.user.nick}: #{syn}"
       else
         bot.reply "#{bot.user.nick}: not found"

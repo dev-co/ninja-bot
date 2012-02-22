@@ -1,22 +1,14 @@
 GIT
   remote: git://github.com/dcu/mongoid_ext.git
-  revision: 316ebbbed9cf2c543cf3ab4cadc8d331210e082e
+  revision: 75c340ee99de40eca15c3560a1adb6c3d066b3f3
   specs:
-    mongoid_ext (0.6.1)
+    mongoid_ext (0.6.2)
       differ (>= 0.1.2)
+      encryptor (~> 1.1.3)
       i18n
-      mongoid (~> 2.0.0)
+      mongoid (~> 2)
       tzinfo
       uuidtools (>= 2.1.1)
-
-GIT
-  remote: git://github.com/mongoid/mongoid.git
-  revision: 922662b4a0db897be0fc04c994c66bf52d702b25
-  specs:
-    mongoid (2.0.2)
-      activemodel (~> 3.0)
-      mongo (~> 1.3)
-      tzinfo (~> 0.3.22)
 
 GIT
   remote: http://github.com/phaza/loofah.git
@@ -34,28 +26,24 @@ GIT
     cinch-identify (0.0.1)
       cinch (~> 1.0)
 
-GIT
-  remote: https://github.com/cinchrb/cinch.git
-  revision: 397d468fb7574a07f9008bfae1e12f736eeb9927
-  branch: master
-  specs:
-    cinch (1.1.3)
-
 GEM
   remote: http://rubygems.org/
   specs:
-    activemodel (3.0.8)
-      activesupport (= 3.0.8)
+    activemodel (3.0.9)
+      activesupport (= 3.0.9)
       builder (~> 2.1.2)
       i18n (~> 0.5.0)
-    activesupport (3.0.8)
+    activesupport (3.0.9)
     ago (0.1.5)
     bson (1.3.1)
+    bson_ext (1.3.1)
     builder (2.1.2)
     chronic (0.4.3)
+    cinch (1.1.3)
     crack (0.1.8)
     curb (0.7.15)
     differ (0.1.2)
+    encryptor (1.1.3)
     feedzirra (0.0.24)
       activesupport (>= 2.3.8)
       builder (>= 2.1.2)
@@ -63,6 +51,7 @@ GEM
       loofah (>= 0.3.1)
       nokogiri (> 0.0.0)
       sax-machine (>= 0.0.12)
+    ffi (1.0.9)
     git (1.2.5)
     googl (0.5.0)
       httparty (>= 0.6.1)
@@ -74,33 +63,47 @@ GEM
     ideone (0.8.4)
     imdb (0.6.5)
       hpricot (>= 0.8.1)
-    jeweler (1.6.2)
+    jeweler (1.6.4)
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
-    json (1.5.1)
-    mechanize (1.0.0)
-      nokogiri (>= 1.2.1)
+    json (1.5.3)
+    magic (0.2.6)
+      ffi (>= 0.6.3)
+    mechanize (2.0.1)
+      net-http-digest_auth (>= 1.1.1, ~> 1.1)
+      net-http-persistent (~> 1.8)
+      nokogiri (~> 1.4)
+      webrobots (>= 0.0.9, ~> 0.0)
     mongo (1.3.1)
       bson (>= 1.3.1)
-    nokogiri (1.4.4)
-    rack (1.3.0)
+    mongoid (2.1.5)
+      activemodel (~> 3.0)
+      mongo (~> 1.3)
+      tzinfo (~> 0.3.22)
+    net-http-digest_auth (1.1.1)
+    net-http-persistent (1.8)
+    nokogiri (1.5.0)
+    rack (1.3.2)
     rae (1.5.0)
       mechanize (>= 1.0.0)
     rake (0.9.2)
-    sax-machine (0.0.16)
+    sax-machine (0.0.20)
       nokogiri (> 0.0.0)
     shoulda (2.11.3)
-    tzinfo (0.3.27)
+    tzinfo (0.3.29)
     uuidtools (2.1.2)
+    webrobots (0.0.10)
+      nokogiri (>= 1.4.4)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   ago
+  bson_ext
   chronic
-  cinch!
+  cinch (= 1.1.3)
   cinch-identify!
   feedzirra (= 0.0.24)
   googl
@@ -110,8 +113,9 @@ DEPENDENCIES
   imdb
   jeweler
   loofah!
+  magic
   mechanize
-  mongoid!
+  mongoid (= 2.1.5)
   mongoid_ext!
   nokogiri
   rack

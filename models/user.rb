@@ -93,7 +93,7 @@ class User
   end
 
   def add_fan(nick)
-    self.add_to_set({:fans => nick})
+    self.add_to_set(:fans,  nick)
   end
 
   def given_points_today

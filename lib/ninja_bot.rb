@@ -3,7 +3,9 @@ require 'bundler/setup'
 
 Bundler.require
 
-Time.class_eval { alias :ago_in_words :ago}
+module Ago::TimeAgo
+    alias_method :ago_in_words, :ago
+end
 
 require 'fixed_queue'
 require 'ninja_plugin'

@@ -12,7 +12,7 @@ class Message
 
 
   def self.random_message(conditions = {})
-    self.random
+    self.random conditions
   end
 
   def to_s
