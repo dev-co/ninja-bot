@@ -3,6 +3,7 @@ class QuotePlugin
 
   match /quote (.+)/
   match /grab (.+)/, :method => :grab
+  match /review\s?(.*)/, :method => :review
 
   def usage
     "!quote <nick> [type]"
@@ -29,7 +30,7 @@ class QuotePlugin
                                          :channel => channel,
                                          :created_by => source)
           m.reply "#{m.user.nick}: grabbed! >> #{message.to_s}"
-          
+
           if source.can_increase_karma?
             user.karma_up!
             user.add_fan(source.nick)
@@ -57,8 +58,26 @@ class QuotePlugin
 
       if message = Message.random_message(conditions)
         m.reply "#{m.user.nick}: #{message.to_s}"
+        
+        if message.should_be_deleted?
+          message.destroy
+        end
       end
     end
+  end
+  
+  def review(m, query)
+    target_nick = query.to_s.strip.downcase
+    current_user = User.where(:nick => m.user.nick.downcase).first
+    msg = nil
+    if target_nick.present? && (target = User.where(:nick => target_nick).first)
+      msg = Message.random_message(:user_id => target.id, :_id.nin => current_user.reviewed)
+      current_user.override(:current_message_id => msg.id, :reviewing => target.nick)
+    elsif channel = Channel.find(m.channel.name.downcase)
+      msg = Message.random_message(:channel_id => channel.id, :_id.nin => current_user.reviewed)
+      current_user.override(:current_message_id => msg.id, :reviewing => channel.id)
+    end
+    m.user.send("#{msg.to_s} || type '+1' or '-1' to vote, 'next' to get a new message") if msg
   end
 end
 

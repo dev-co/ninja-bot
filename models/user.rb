@@ -12,6 +12,8 @@ class User
   field :last_seen_at, :type => Time
   field :last_quit_message, :type => String
 
+  field :current_message_id, :type => String
+  field :reviewed, :type => Array, :default => []
 
   field :lastfm_user, :type => String
   field :coderwall_user, :type => String
