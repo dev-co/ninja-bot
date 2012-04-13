@@ -125,11 +125,11 @@ class User
   end
 
   def can_increase_karma?
-    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 10
+    self.given_points_today <= 5 && self.messages_count > 100 && self.karma >= 10
   end
 
   def can_decrease_karma?
-    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 50
+    self.given_points_today <= 5 && self.messages_count > 100 && self.karma >= 50
   end
 end
 

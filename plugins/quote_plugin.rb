@@ -16,9 +16,18 @@ class QuotePlugin
         next if message[:text] =~ /^\!(\S+)/ || message[:nick].downcase == m.user.nick.downcase
 
         if message[:text] =~ /#{Regexp.escape(pattern)}/ || message[:nick] =~ /#{Regexp.escape(pattern)}/
+          source = Channel.get_user(chan.name, m.user.nick)
           user = Channel.get_user(chan.name, message[:nick])
+          
           message = user.messages.create(:type => "famous", :text => message[:text], :created_at => message[:date])
           m.reply "#{m.user.nick}: grabbed! >> #{message.to_s}"
+          
+          if source.can_increase_karma?
+            user.karma_up!
+            user.add_fan(source.nick)
+            source.given_points_up!
+          end
+          
           break
         end
       end
