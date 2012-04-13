@@ -10,16 +10,24 @@ class QuotePlugin
 
   def grab(m, pattern)
     if chan = m.channel
+      source = Channel.get_user(chan.name, m.user.nick)
+
+      return if !source.can_grab_message?
+
       history = @bot.history[chan.name] || []
 
       history.reverse_each do |message|
         next if message[:text] =~ /^\!(\S+)/ || message[:nick].downcase == m.user.nick.downcase
 
         if message[:text] =~ /#{Regexp.escape(pattern)}/ || message[:nick] =~ /#{Regexp.escape(pattern)}/
-          source = Channel.get_user(chan.name, m.user.nick)
+          channel = Channel.find(m.channel.name.downcase)
           user = Channel.get_user(chan.name, message[:nick])
           
-          message = user.messages.create(:type => "famous", :text => message[:text], :created_at => message[:date])
+          message = user.messages.create(:type => "famous", 
+                                         :text => message[:text], 
+                                         :created_at => message[:date],
+                                         :channel => channel,
+                                         :created_by => source)
           m.reply "#{m.user.nick}: grabbed! >> #{message.to_s}"
           
           if source.can_increase_karma?

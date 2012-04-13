@@ -131,5 +131,9 @@ class User
   def can_decrease_karma?
     self.given_points_today <= 5 && self.messages_count > 100 && self.karma >= 50
   end
+  
+  def can_grab_message?
+    self.karma >= 5
+  end
 end
 
