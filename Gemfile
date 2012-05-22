@@ -5,7 +5,7 @@ gem 'cinch-identify', :git => 'https://github.com/cinchrb/cinch-identify.git', :
 gem 'chronic'
 gem 'ago'
 
-gem 'mongoid', '2.1.5' 
+gem 'mongoid', '2.1.5'
 gem 'mongoid_ext', :git => "git://github.com/dcu/mongoid_ext.git"
 
 gem 'rack'
@@ -25,4 +25,3 @@ gem 'loofah', :git => 'http://github.com/phaza/loofah.git', :branch => "rails3"
 gem 'feedzirra', '0.0.24'
 
 gem 'bson_ext'
-gem 'magic'
