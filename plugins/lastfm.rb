@@ -38,7 +38,7 @@ class NowPlayingPlugin
 
   def np_user(m, query)
     begin
-      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(query)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
+      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(query)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json&limit=1").read)
       last_song = result["recenttracks"]["track"][0]
       reply = "#{last_song['name']} by #{last_song['artist']['#text']}"
     rescue
