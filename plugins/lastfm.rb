@@ -51,7 +51,7 @@ class NowPlayingPlugin
     user = Channel.get_user(m.channel.name, m.user.nick)
 
     begin
-      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(user.lastfm_user||user.nick)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json").read)
+      result = JSON.parse(open("http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=#{URI.escape(user.lastfm_user||user.nick)}&api_key=b25b959554ed76058ac220b7b2e0a026&format=json&limit=1").read)
       last_song = result["recenttracks"]["track"][0]
       reply = "#{last_song['name']} by #{last_song['artist']['#text']}"
     rescue
