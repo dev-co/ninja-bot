@@ -25,5 +25,5 @@ end
 
 on :quit do |message|
   @bot.localize!
-  User.override({:nick => message.user.nick.downcase}, {:last_seen_at => Time.zone.now, :last_quit_message => message.message})
+  User.override({:nick => message.user.nick.downcase}, {:last_seen_at => Time.zone.now.to_time, :last_quit_message => message.message})
 end
