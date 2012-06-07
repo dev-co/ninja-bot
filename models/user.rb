@@ -12,6 +12,8 @@ class User
   field :last_seen_at, :type => Time
   field :last_quit_message, :type => String
 
+  field :current_message_id, :type => String
+  field :reviewed, :type => Array, :default => []
 
   field :lastfm_user, :type => String
   field :coderwall_user, :type => String
@@ -125,11 +127,15 @@ class User
   end
 
   def can_increase_karma?
-    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 10
+    self.given_points_today <= 5 && self.messages_count > 100 && self.karma >= 10
   end
 
   def can_decrease_karma?
-    self.given_points_today <= 3 && self.messages_count > 100 && self.karma >= 50
+    self.given_points_today <= 5 && self.messages_count > 100 && self.karma >= 50
+  end
+  
+  def can_grab_message?
+    self.karma >= 5
   end
 end
 
