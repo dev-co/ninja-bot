@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-require 'vendor/google_weather'
+require 'weatherboy'
 require 'iconv'
 
 class WeatherPlugin
@@ -13,9 +13,9 @@ class WeatherPlugin
   end
 
   def execute(m, loc)
-    info = GoogleWeather.forecast(loc)
+    info = Weatherboy.new(loc).current
     puts info.inspect
-    txt = "#{m.user.nick}: #{clean_entry(info[:location][:city])}, conditions: #{info[:current][:conditions]}, temp: #{info[:current][:temp_c]}°C, #{info[:current][:humidity]}, #{info[:current][:wind]}"
+    txt = "#{m.user.nick}: conditions: #{info.weather}, temp: #{info.temp_c}°C, #{info.relative_humidity} humidity, #{info.wind_mph} m/h #{info.wind_dir}, visibility: #{info.visibility_km} KM"
 
     m.reply txt
   end
