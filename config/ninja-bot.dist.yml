@@ -1,0 +1,21 @@
+timezone: Bogota
+database:
+  sessions:
+    default:
+      database: ninja-bot
+      hosts:
+        - localhost:27017
+network:
+  :server: irc.freenode.net
+  :nick: "NinjaBot"
+  :password: "p4ssw0rd"
+  :max_messages: 1
+  :channels:
+  - name: "#cinch-bots"
+    timezone: EST
+    shapado_site: http://shapado.com
+    grooveshark: PutYourTinysongApiKeyHere
+  :port: 6667
+  :realname: "http://github.com/dev_co/ninja-bot"
+  :verbose: true
+  :version: "NinjaBot v3.0"
