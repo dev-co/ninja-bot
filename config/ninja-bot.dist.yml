@@ -17,7 +17,7 @@ network:
     shapado_site: http://shapado.com
     grooveshark: PutYourTinysongApiKeyHere
   :port: 6667
-  :realname: "http://github.com/dev_co/ninja-bot"
+  :realname: "http://github.com/dev-co/ninja-bot"
   :verbose: true
   :version: "NinjaBot v3.0"
 
