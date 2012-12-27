@@ -2,13 +2,13 @@ class PluginExt
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  identity :type => String
+  field :_id, :type => String, default: ->{ channel_id }
 
   field :name, :type => String
   field :body, :type => String
   field :argc, :type => Integer, :default => 0
 
-  key :channel_id, String
+  field :channel_id, :type => String
 
   validates_uniqueness_of :name, :scope => [:channel_id]
 

@@ -1,10 +1,10 @@
 require "cgi"
 require 'open-uri'
 
-class WhatTheCommitPlugin
+class WhatthecommitPlugin
   include NinjaPlugin
 
-  match /wtc/ 
+  match /wtc/
 
   def usage
     "!wtc -- Gives a random commit message."
@@ -23,4 +23,4 @@ class WhatTheCommitPlugin
   end
 end
 
-register_plugin WhatTheCommitPlugin
+#register_plugin WhatTheCommitPlugin

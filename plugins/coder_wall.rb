@@ -1,4 +1,4 @@
-class CoderWallPlugin 
+class CoderWallPlugin
   include NinjaPlugin
 
   match /coderwall (.+)/, :method => :coderwall
@@ -48,4 +48,4 @@ class CoderWallPlugin
   end
 end
 
-register_plugin CoderWallPlugin 
+##register_plugin CoderWallPlugin

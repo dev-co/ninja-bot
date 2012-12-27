@@ -1,7 +1,7 @@
 require 'json'
 require 'open-uri'
 
-class GitHubPlugin
+class GithubPlugin
   include NinjaPlugin
 
   match /github (.+)/
@@ -22,4 +22,4 @@ class GitHubPlugin
   end
 end
 
-register_plugin GitHubPlugin
+#register_plugin GitHubPlugin

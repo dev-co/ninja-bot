@@ -1,4 +1,4 @@
-class PyDocPlugin
+class PydocPlugin
   include NinjaPlugin
 
   match /pydoc (.+)/
@@ -46,4 +46,4 @@ class PyDocPlugin
     bot.reply "#{bot.user.nick}: #{result}"
   end
 end
-register_plugin PyDocPlugin
+#register_plugin PyDocPlugin

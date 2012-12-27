@@ -2,7 +2,7 @@ class Log
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  identity :type => String
+  field :_id, :type => String
 
   belongs_to :channel
 

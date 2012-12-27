@@ -22,5 +22,5 @@ class TimezonePlugin
   end
 end
 
-register_plugin TimezonePlugin
+#register_plugin TimezonePlugin
 

@@ -14,16 +14,16 @@ require 'core_ext'
 Encoding.default_external = "UTF-8"
 
 class NinjaBot < Cinch::Bot
-  attr_reader :channel_list
+  #attr_reader :channel_list
 
   def initialize(config)
     super()
 
-    @channel_list = {}
+    _channel_list = {}
     config.delete(:channels).each do |c|
-      @channel_list[c.delete("name")] = c
+      _channel_list[c.delete("name")] = c
     end
-    self.config.channels = @channel_list.keys
+    self.config.channels = _channel_list.keys
 
     config.each do |k, v|
       self.config.send("#{k}=", v)
@@ -49,9 +49,7 @@ class NinjaBot < Cinch::Bot
   end
 
   def self.database=(config)
-    config[:database] = config.delete(:name)
-    Mongoid.config.from_hash(config.stringify_keys)
-    Mongoid.config.raise_not_found_error = false
+    Mongoid.load_configuration(config.stringify_keys)
   end
 
   def self.known_plugins
@@ -98,7 +96,14 @@ class NinjaBot < Cinch::Bot
     Dir[File.dirname(__FILE__)+"/../plugins/*.rb"].sort.each do |file|
       puts ">> Loading #{file}..."
       begin
-        eval File.read(file), binding, file
+        filename = File.basename(file, ".rb")
+        if filename.start_with?("_")
+          eval File.read(file), binding, file
+        else
+          require file
+          klass = "#{filename.classify}Plugin".constantize
+          config.plugins.plugins.push klass
+        end
       rescue Exception => e
         puts "Cannot load: #{e.inspect}"
         sleep 3

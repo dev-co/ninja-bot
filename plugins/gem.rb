@@ -22,4 +22,4 @@ class GemPlugin
   end
 end
 
-register_plugin GemPlugin
+#register_plugin GemPlugin

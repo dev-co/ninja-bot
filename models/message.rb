@@ -3,8 +3,9 @@ class Message
   include Mongoid::Timestamps
   include MongoidExt::Random
 
-  identity :type => String
-  field :user_id, :type => String, :required => true
+  field :_id, type: String
+
+  field :user_id, :type => String
   belongs_to :user
   
   field :channel_id, :type => String
@@ -13,12 +14,15 @@ class Message
   field :created_by_id, :type => String
   belongs_to :created_by, :class_name => "User"
 
-  field :type, :type => String, :required => true
+  field :type, :type => String
   field :text, :type => String
   
   field :votes_up, :type => Integer, :default => 0
   field :votes_down, :type => Integer, :default => 0
   field :votes_total, :type => Integer, :default => 0
+
+  validates_presence_of :user
+  validates_presence_of :type
 
 
   def self.random_message(conditions = {})

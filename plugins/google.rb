@@ -27,5 +27,5 @@ class GooglePlugin
   end
 end
 
-register_plugin GooglePlugin
+#register_plugin GooglePlugin
 

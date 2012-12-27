@@ -38,4 +38,4 @@ class UrbanPlugin
   end
 end
 
-register_plugin UrbanPlugin
+#register_plugin UrbanPlugin

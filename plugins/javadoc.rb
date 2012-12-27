@@ -1,4 +1,4 @@
-class JavaDocPlugin
+class JavadocPlugin
   include NinjaPlugin
 
   match /javadoc (.+)/
@@ -52,4 +52,4 @@ class JavaDocPlugin
     bot.reply "#{bot.user.nick}: #{result}"
   end
 end
-register_plugin JavaDocPlugin
+#register_plugin JavaDocPlugin

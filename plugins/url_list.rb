@@ -25,4 +25,4 @@ class UrlListPlugin
   end
 end
 
-register_plugin UrlListPlugin
+#register_plugin UrlListPlugin

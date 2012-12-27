@@ -66,4 +66,4 @@ class LoggerPlugin
   end
 end
 
-register_plugin LoggerPlugin
+#register_plugin LoggerPlugin

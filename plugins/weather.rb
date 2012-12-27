@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'weatherboy'
-require 'iconv'
 
 class WeatherPlugin
   include NinjaPlugin
@@ -26,5 +25,5 @@ class WeatherPlugin
   end
 end
 
-register_plugin WeatherPlugin
+#register_plugin WeatherPlugin
 

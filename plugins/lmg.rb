@@ -13,4 +13,4 @@ class LmgPlugin
   end
 end
 
-register_plugin LmgPlugin
+#register_plugin LmgPlugin

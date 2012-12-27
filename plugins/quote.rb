@@ -23,9 +23,9 @@ class QuotePlugin
         if message[:text] =~ /#{Regexp.escape(pattern)}/ || message[:nick] =~ /#{Regexp.escape(pattern)}/
           channel = Channel.find(m.channel.name.downcase)
           user = Channel.get_user(chan.name, message[:nick])
-          
-          message = user.messages.create(:type => "famous", 
-                                         :text => message[:text], 
+
+          message = user.messages.create(:type => "famous",
+                                         :text => message[:text],
                                          :created_at => message[:date],
                                          :channel => channel,
                                          :created_by => source)
@@ -36,7 +36,7 @@ class QuotePlugin
             user.add_fan(source.nick)
             source.given_points_up!
           end
-          
+
           break
         end
       end
@@ -58,14 +58,14 @@ class QuotePlugin
 
       if message = Message.random_message(conditions)
         m.reply "#{m.user.nick}: #{message.to_s}"
-        
+
         if message.should_be_deleted?
           message.destroy
         end
       end
     end
   end
-  
+
   def review(m, query)
     target_nick = query.to_s.strip.downcase
     current_user = User.where(:nick => m.user.nick.downcase).first
@@ -81,4 +81,4 @@ class QuotePlugin
   end
 end
 
-register_plugin QuotePlugin
+#register_plugin QuotePlugin

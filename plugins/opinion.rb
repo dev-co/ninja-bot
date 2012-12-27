@@ -112,7 +112,7 @@ module Twitter
   end
 end
 
-class TwitterPlugin
+class OpinionPlugin
   include NinjaPlugin
 
   match /opinion (.+)/
@@ -148,5 +148,5 @@ class TwitterPlugin
   end
 end
 
-register_plugin TwitterPlugin
+#register_plugin TwitterPlugin
 

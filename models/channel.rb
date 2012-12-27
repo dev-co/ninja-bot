@@ -2,7 +2,7 @@ class Channel
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  identity :type => String
+  field :_id, type: String
   has_many :users
   has_many :logs
 
@@ -10,8 +10,7 @@ class Channel
     name = name.downcase
     nick = nick.downcase
 
-    channel = Channel.find(name)
-    channel = Channel.create(:_id => name) if channel.nil?
+    channel = Channel.find_or_create_by(:_id => name)
 
     user = channel.users.where(:nick => nick).first
     user = channel.users.create(:nick => nick) if user.nil? && create
@@ -20,7 +19,7 @@ class Channel
   end
 
   def self.add_log_message(name, message)
-    channel = Channel.find(name)
+    channel = Channel.find_or_create_by(:_id => name)
 
     log = Log.where(:channel_id => channel.id, :order => "created_at desc").only(%w[messages_count channel_id]).first
     if log.nil? || log.messages_count >= 100

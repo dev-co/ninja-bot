@@ -80,4 +80,4 @@ class KarmaPlugin
   end
 end
 
-register_plugin KarmaPlugin
+#register_plugin KarmaPlugin

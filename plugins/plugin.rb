@@ -44,4 +44,4 @@ class PluginPlugin
   end
 end
 
-register_plugin PluginPlugin
+#register_plugin PluginPlugin

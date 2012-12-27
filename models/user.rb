@@ -3,12 +3,12 @@ class User
   include MongoidExt::Random
   include Mongoid::Timestamps
 
-  identity :type => String
+  field :_id, :type => String
 
-  field :channel_id, :type => String, :required => true
+  field :channel_id, :type => String
   belongs_to :channel
 
-  field :nick, :type => String, :required => true
+  field :nick, :type => String
   field :last_seen_at, :type => Time
   field :last_quit_message, :type => String
 
@@ -34,6 +34,8 @@ class User
   has_many :url_lists, :class_name => "UrlList"
 
   validates_uniqueness_of :nick, :scope => [:channel_id]
+  validates_presence_of :channel
+  validates_presence_of :nick
 
   def add_message(text, type = nil)
     self.increment({:messages_count => 1})

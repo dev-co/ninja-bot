@@ -13,5 +13,5 @@ class FortunePlugin
   end
 end
 
-register_plugin FortunePlugin
+#register_plugin FortunePlugin
 

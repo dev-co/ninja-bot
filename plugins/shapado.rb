@@ -63,5 +63,5 @@ class ShapadoPlugin
   end
 end
 
-register_plugin ShapadoPlugin
+#register_plugin ShapadoPlugin
 
