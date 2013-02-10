@@ -28,10 +28,10 @@ class KarmaPlugin
 
   def top(m)
     if m.channel
-      channel = Channel.find(m.channel.name.downcase)
+      channel = Channel.find_by(name: m.channel.name.downcase)
       buffer = ""
       count = 0
-      channel.users.limit(10).order(:karma_up.desc).each do |user|
+      channel.users.limit(10).desc(:karma_up).each do |user|
         buffer << "#{count+=1}. #{user.nick} [#{user.karma_up}] | "
       end
 

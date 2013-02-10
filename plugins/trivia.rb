@@ -1,4 +1,6 @@
-class Trivia
+class TriviaPlugin
+  include NinjaPlugin
+
   def self.hint(w)
     words = w.split(" ")
     hidden = ""

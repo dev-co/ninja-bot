@@ -3,7 +3,6 @@ class Question
   include Mongoid::Timestamps
   include MongoidExt::Random
 
-  field :_id, :type => String
   field :language, :type => String
   field :category, :type => String
   field :text, :type => String
