@@ -15,5 +15,5 @@ class ManPlugin
   end
 end
 
-register_plugin ManPlugin
+#register_plugin ManPlugin
 

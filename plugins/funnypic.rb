@@ -1,4 +1,4 @@
-class FunnyPicPlugin
+class FunnypicPlugin
   include NinjaPlugin
 
   match /pic/
@@ -35,4 +35,4 @@ class FunnyPicPlugin
   end
 end
 
-register_plugin FunnyPicPlugin
+#register_plugin FunnyPicPlugin

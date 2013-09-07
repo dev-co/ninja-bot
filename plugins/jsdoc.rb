@@ -1,4 +1,4 @@
-class JsDocPlugin
+class JsdocPlugin
   include NinjaPlugin
 
   match /jsdoc (.+)/
@@ -46,5 +46,5 @@ class JsDocPlugin
   end
 end
 
-register_plugin JsDocPlugin
+#register_plugin JsDocPlugin
 

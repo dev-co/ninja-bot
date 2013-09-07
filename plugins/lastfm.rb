@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'json'
 
 class LastfmPlugin
@@ -69,5 +70,5 @@ class NowPlayingPlugin
   end
 end
 
-register_plugin LastfmPlugin
-register_plugin NowPlayingPlugin
+#register_plugin LastfmPlugin
+#register_plugin NowPlayingPlugin

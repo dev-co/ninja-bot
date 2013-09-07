@@ -1,4 +1,4 @@
-class RubyDocPlugin
+class RubydocPlugin
   include NinjaPlugin
 
   match /rubydoc (.+)/
@@ -46,4 +46,4 @@ class RubyDocPlugin
   end
 end
 
-register_plugin RubyDocPlugin
+#register_plugin RubyDocPlugin

@@ -1,4 +1,4 @@
-class PhpDocPlugin
+class PhpdocPlugin
   include NinjaPlugin
 
   match /phpdoc (.+)/
@@ -43,4 +43,4 @@ class PhpDocPlugin
   end
 end
 
-register_plugin PhpDocPlugin
+#register_plugin PhpDocPlugin

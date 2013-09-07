@@ -46,4 +46,4 @@ class MemoPlugin
   end
 end
 
-register_plugin MemoPlugin
+#register_plugin MemoPlugin

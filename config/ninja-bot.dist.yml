@@ -1,11 +1,10 @@
 timezone: Bogota
 database:
-  :name: ninja-bot
-  :host: flame.mongohq.com
-  :port: 27042
-  :user: your user
-  :password: your pass
-
+  sessions:
+    default:
+      database: ninja-bot
+      hosts:
+        - localhost:27017
 network:
   :server: irc.freenode.net
   :nick: "NinjaBot"
@@ -20,4 +19,3 @@ network:
   :realname: "http://github.com/dev_co/ninja-bot"
   :verbose: true
   :version: "NinjaBot v3.0"
-

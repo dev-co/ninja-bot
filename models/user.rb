@@ -3,12 +3,7 @@ class User
   include MongoidExt::Random
   include Mongoid::Timestamps
 
-  identity :type => String
-
-  field :channel_id, :type => String, :required => true
-  belongs_to :channel
-
-  field :nick, :type => String, :required => true
+  field :nick, :type => String
   field :last_seen_at, :type => Time
   field :last_quit_message, :type => String
 
@@ -18,7 +13,7 @@ class User
   field :lastfm_user, :type => String
   field :coderwall_user, :type => String
 
-  field :given_points, :type => Hash
+  field :given_points, :type => Hash,:default => {}
   field :karma_up, :type => Integer, :default => 0
   field :karma_down, :type => Integer, :default => 0
 
@@ -29,22 +24,26 @@ class User
 
   field :fans, :type => Array, :default => []
 
+  belongs_to :channel
+
   has_many :messages, :class_name => "Message"
   has_many :normal_messages, :class_name => "Message"
   has_many :url_lists, :class_name => "UrlList"
 
   validates_uniqueness_of :nick, :scope => [:channel_id]
+  validates_presence_of :channel
+  validates_presence_of :nick
 
   def add_message(text, type = nil)
-    self.increment({:messages_count => 1})
+    self.inc(:messages_count, 1)
 
     return if text.split(" ").size < 2
 
     if self.karma_down == 0
       if self.messages_count+1 > 10 && self.karma_up < 5
-        self.override({:karma_up => 5})
+        self.set(:karma_up, 5)
       elsif self.messages_count+1 > 100 && self.karma_up < 10
-        self.override({:karma_up => 10})
+        self.set(:karma_up, 10)
       end
     end
 
@@ -61,7 +60,7 @@ class User
     end
 
     if type
-      self.increment({:"#{type}_messages_count" => 1})
+      self.inc(:"#{type}_messages_count", 1)
       message = self.messages.create(:type => type, :text => text)
     end
   end
@@ -72,7 +71,7 @@ class User
     if !url_list
       url_list = self.url_lists.create(:day => today)
     end
-    url_list.push_uniq(:urls => {:link => url, :title => title})
+    url_list.add_to_set(:urls, {:link => url, :title => title})
   end
 
   def urls_for(day)
@@ -101,8 +100,7 @@ class User
   def given_points_today
     p = self.given_points[Date.today.iso8601]
     if p.nil?
-      self.override({:given_points => {}})
-      self.override({:"given_points.#{Date.today.iso8601}" => 0})
+      self.set(:"given_points.#{Date.today.iso8601}", 0)
     end
 
     p.to_i
@@ -110,16 +108,15 @@ class User
 
   def given_points_up!
     self.given_points[Date.today.iso8601] ||= 0
-    self.given_points[Date.today.iso8601] += 1
-    self.increment({:"given_points.#{Date.today.iso8601}" => 1})
+    self.inc(:"given_points.#{Date.today.iso8601}", 1)
   end
 
   def karma_up!
-    self.increment({:karma_up => 1})
+    self.inc(:karma_up, 1)
   end
 
   def karma_down!
-    self.increment({:karma_down => 1})
+    self.inc(:karma_down, 1)
   end
 
   def karma
@@ -133,7 +130,7 @@ class User
   def can_decrease_karma?
     self.given_points_today <= 5 && self.messages_count > 100 && self.karma >= 50
   end
-  
+
   def can_grab_message?
     self.karma >= 5
   end

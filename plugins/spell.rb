@@ -12,4 +12,4 @@ class SpellPlugin
     bot.reply word
   end
 end
-register_plugin SpellPlugin
+#register_plugin SpellPlugin

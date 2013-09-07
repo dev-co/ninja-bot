@@ -37,4 +37,4 @@ class SeenPlugin
   end
 end
 
-register_plugin SeenPlugin
+#register_plugin SeenPlugin

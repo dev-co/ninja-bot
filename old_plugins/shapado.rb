@@ -13,7 +13,7 @@ class ShapadoPlugin
   def find_question()
     $stderr.puts @bot.channel_list.inspect
     @bot.channel_list.each do |name, config|
-      next if config["shapado_site"].blank?
+      next if !config || config["shapado_site"].blank?
 
       result = parse_feed(config["shapado_site"], config[:last_modified] || Time.now)
 
@@ -63,5 +63,5 @@ class ShapadoPlugin
   end
 end
 
-register_plugin ShapadoPlugin
+#register_plugin ShapadoPlugin
 

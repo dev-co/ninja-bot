@@ -1,12 +1,16 @@
 source "http://rubygems.org"
 
-gem 'cinch', '1.1.3'
-gem 'cinch-identify', :git => 'https://github.com/cinchrb/cinch-identify.git', :branch => 'master', :require => 'cinch/plugins/identify'
+ruby '1.9.3'
+gem 'bundler', '>= 1.2.0.rc'
+
+
+gem 'cinch'
+gem 'cinch-identify', :require => 'cinch/plugins/identify'
 gem 'chronic'
 gem 'ago'
 
-gem 'mongoid', '2.1.5'
-gem 'mongoid_ext', :git => "git://github.com/dcu/mongoid_ext.git"
+gem 'mongoid', :git => 'https://github.com/mongoid/mongoid.git'
+gem 'mongoid_ext', :git => 'git://github.com/dcu/mongoid_ext.git'
 
 gem 'rack'
 gem 'nokogiri'
@@ -23,6 +27,5 @@ gem 'googl'
 gem 'weatherboy'
 
 gem 'loofah', :git => 'http://github.com/phaza/loofah.git', :branch => "rails3"
-gem 'feedzirra', '0.0.24'
+gem 'feedzirra'
 
-gem 'bson_ext'

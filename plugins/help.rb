@@ -17,5 +17,5 @@ class HelpPlugin
   end
 end
 
-register_plugin HelpPlugin
+#register_plugin HelpPlugin
 

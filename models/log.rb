@@ -2,8 +2,6 @@ class Log
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  identity :type => String
-
   belongs_to :channel
 
   field :messages, :type => Array, :default => []

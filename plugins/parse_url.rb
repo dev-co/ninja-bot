@@ -53,4 +53,4 @@ class ParseUrlPlugin
   end
 end
 
-register_plugin ParseUrlPlugin
+#register_plugin ParseUrlPlugin

@@ -1,4 +1,4 @@
-module Xxx
+module XxxPlugin
   class Base
     def agent
       @agent ||= Mechanize.new
@@ -71,4 +71,4 @@ class XxxxPlugin
   end
 end
 
-register_plugin XxxxPlugin
+#register_plugin XxxxPlugin

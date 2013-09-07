@@ -1,6 +1,6 @@
 require 'json'
 
-class IsoHuntPlugin
+class IsohuntPlugin
   include NinjaPlugin
 
   match /isohunt (.+)/
@@ -63,5 +63,5 @@ class SubDivXPlugin
   end
 end
 
-register_plugin IsoHuntPlugin
-register_plugin SubDivXPlugin
+#register_plugin IsoHuntPlugin
+#register_plugin SubDivXPlugin

@@ -45,4 +45,4 @@ class EvalRubyPlugin
 
 end
 
-register_plugin EvalRubyPlugin
+#register_plugin EvalRubyPlugin

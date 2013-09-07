@@ -10,6 +10,7 @@ class ImdbPlugin
   end
 
   def execute(m, query)
+    p query
     movies = Imdb::Search.new(query).movies
     movies[0,5].each_with_index do |movie, index|
       if index == 0
@@ -21,4 +22,4 @@ class ImdbPlugin
   end
 end
 
-register_plugin ImdbPlugin
+#register_plugin ImdbPlugin

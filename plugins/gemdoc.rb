@@ -1,4 +1,4 @@
-class GemDocPlugin
+class GemdocPlugin
   include NinjaPlugin
 
   match /gemdoc (.+)/
@@ -15,5 +15,5 @@ class GemDocPlugin
   end
 end
 
-register_plugin GemDocPlugin
+#register_plugin GemDocPlugin
 

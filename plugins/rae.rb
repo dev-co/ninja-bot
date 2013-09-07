@@ -22,5 +22,5 @@ class RaePlugin
   end
 end
 
-register_plugin RaePlugin
+#register_plugin RaePlugin
 

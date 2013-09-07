@@ -1,7 +1,7 @@
 require "ideone"
 require "cgi"
 
-class IdeonePugin
+class IdeonePlugin
   include NinjaPlugin
 
   match /ideone (.+?) (.+)/
@@ -38,4 +38,4 @@ class IdeonePugin
   end
 end
 
-register_plugin IdeonePugin
+#register_plugin IdeonePugin

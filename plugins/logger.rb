@@ -47,7 +47,7 @@ class LoggerPlugin
       regexp = Regexp.new(query) rescue Regexp.new(Regexp.escape(query))
       matches = []
       count = 0
-      Log.where(:"messages.text" => regexp, :channel_id => m.channel.name, :limit => 5, :order => "created_at desc").all.each do |log|
+      Log.where(:"messages.text" => regexp, :channel_id => m.channel.name).limit(5).desc(:created_at).all.each do |log|
         if count >= 10
           m.user.send ">>>> TOO MANY RESULTS<<<<<"
           break
@@ -66,4 +66,4 @@ class LoggerPlugin
   end
 end
 
-register_plugin LoggerPlugin
+#register_plugin LoggerPlugin

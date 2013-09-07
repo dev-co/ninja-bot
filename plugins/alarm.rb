@@ -38,4 +38,4 @@ class AlarmPlugin
   end
 end
 
-register_plugin AlarmPlugin
+##register_plugin AlarmPlugin

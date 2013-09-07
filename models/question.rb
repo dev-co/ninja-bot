@@ -3,13 +3,14 @@ class Question
   include Mongoid::Timestamps
   include MongoidExt::Random
 
-  identity :type => String
   field :language, :type => String
   field :category, :type => String
-  field :text, :type => String, :unique => true
+  field :text, :type => String
   field :answer, :type => String
 
-  field :asked_times, :type => Integer, :default => 0
+  field :asked_times, :type => Integer, :default => 0  
+
+  validates_presence_of :text
 
   def self.random_question(conditions = {})
     self.random
